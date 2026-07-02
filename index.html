@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВСТРЕЧА — студенческий медиажурнал МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F1E8;
+    --paper-dark:#EDE7D8;
+    --ink:#17130E;
+    --ink-soft:#4A443B;
+    --red:#F23B13;      /* фирменный красный «Встречи» */
+    --burgundy:#8C034E;
+    --blue:#0561D9;
+    --green:#05A56A;
+    --gold:#B98A2F;
+    --line:#D8D0BE;
+    --maxw:1280px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',Georgia,serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+  /* логотип-знак */
+  .mark path{fill:var(--red)}
+  .mark--light path{fill:var(--paper)}
+  .mark--ghost path{fill:rgba(245,241,232,.14)}
+
+  /* ---------- верхняя лента ---------- */
+  .topbar{
+    border-bottom:1px solid var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    display:flex;align-items:center;overflow:hidden;white-space:nowrap;
+  }
+  .topbar .brand{padding:8px 20px 6px 32px;border-right:1px solid var(--ink);flex-shrink:0;display:flex;align-items:center}
+  .topbar .brand .mark{height:22px;width:auto}
+  .topbar .date{padding:10px 32px;border-right:1px solid var(--ink);flex-shrink:0;background:var(--paper)}
+  .ticker{flex:1;overflow:hidden}
+  .ticker-track{display:inline-block;padding:10px 0;animation:tick 40s linear infinite}
+  .ticker-track span{margin:0 28px;color:var(--ink-soft)}
+  .ticker-track b{color:var(--red);font-weight:600}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- шапка ---------- */
+  header.mast{border-bottom:1px solid var(--ink)}
+  .mast-inner{padding:40px 32px 28px;text-align:center}
+  .mast-inner .mark{height:86px;width:auto;display:inline-block;margin-bottom:20px}
+  .mast-title{
+    font-family:'Unbounded',sans-serif;font-weight:900;
+    font-size:clamp(56px,11vw,148px);line-height:.95;letter-spacing:-.02em;
+  }
+  .mast-title em{font-style:normal;color:var(--red)}
+  .mast-sub{
+    margin-top:14px;font-family:'Inter',sans-serif;font-size:12px;
+    letter-spacing:.35em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  nav.rubrics{
+    border-top:1px solid var(--ink);
+    display:flex;justify-content:center;flex-wrap:wrap;
+  }
+  nav.rubrics a{
+    font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;
+    padding:16px 34px;border-right:1px solid var(--line);
+    transition:background .2s,color .2s;
+  }
+  nav.rubrics a:first-child{border-left:1px solid var(--line)}
+  nav.rubrics a:hover{background:var(--ink);color:var(--paper)}
+  nav.rubrics a.hot{color:var(--red)}
+
+  /* ---------- метки рубрик ---------- */
+  .tag{
+    display:inline-block;font-family:'Unbounded',sans-serif;font-size:11px;
+    font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--red);border:1px solid var(--red);
+    padding:5px 12px;margin-bottom:16px;
+  }
+  .tag--dark{color:var(--paper);border-color:var(--paper)}
+
+  /* ---------- герой ---------- */
+  .hero{border-bottom:1px solid var(--ink)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;min-height:560px}
+  .hero-art{
+    background:url('55323605122_42d12fcdc5_c.jpg') center/cover no-repeat,#2A0D06;
+    position:relative;overflow:hidden;border-right:1px solid var(--ink);
+  }
+  .hero-art:after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(23,19,14,.55), transparent 45%);
+  }
+  .hero-art .cap{
+    z-index:1;
+    position:absolute;left:24px;bottom:20px;font-family:'Inter',sans-serif;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,241,232,.65);
+  }
+  .hero-body{padding:56px 48px;display:flex;flex-direction:column;justify-content:center}
+  .hero-title{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.01em;
+    cursor:pointer;transition:color .2s;
+  }
+  .hero-title:hover{color:var(--red)}
+  .hero-deck{margin-top:22px;font-size:20px;font-weight:300;color:var(--ink-soft);max-width:44ch}
+  .byline{
+    margin-top:28px;font-family:'Inter',sans-serif;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .byline b{color:var(--ink);font-weight:600}
+  .readmore{
+    margin-top:30px;align-self:flex-start;
+    font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--paper);background:var(--ink);padding:14px 28px;
+    cursor:pointer;border:1px solid var(--ink);transition:.2s;
+  }
+  .readmore:hover{background:var(--red);border-color:var(--red)}
+
+  /* ---------- секции ---------- */
+  .sect-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:56px 0 26px;border-bottom:3px solid var(--ink);margin-bottom:0;
+  }
+  .sect-head h2{
+    font-family:'Unbounded',sans-serif;font-weight:800;
+    font-size:clamp(26px,3.4vw,44px);letter-spacing:-.01em;text-transform:uppercase;
+  }
+  .sect-head h2 span{color:var(--red)}
+  .sect-head a{
+    font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink-soft);
+    padding-bottom:2px;
+  }
+  .sect-head a:hover{color:var(--red);border-color:var(--red)}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line)}
+  .card{
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:0 0 34px;background:var(--paper);transition:background .25s;
+  }
+  .card.live{cursor:pointer}
+  .card.live:hover{background:var(--paper-dark)}
+  .card .ph{height:230px;margin-bottom:24px;position:relative;overflow:hidden}
+  .card .ph .g{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Unbounded',sans-serif;font-weight:900;font-size:150px;
+    color:rgba(245,241,232,.16);
+  }
+  .ph--green{background:linear-gradient(140deg,#043D28,#05A56A)}
+  .ph--burg{background:linear-gradient(140deg,#40011F,#8C034E)}
+  .ph--blue{background:linear-gradient(140deg,#02264F,#0561D9)}
+  .ph--red{background:linear-gradient(140deg,#5E1403,#F23B13)}
+  .ph--pink{background:linear-gradient(140deg,#7A2E42,#E67999)}
+  .ph--slate{background:linear-gradient(140deg,#20242B,#4E5A6E)}
+  .ph--img{background-size:cover !important;background-position:center !important}
+  .card-in{padding:0 26px}
+  .card h3{
+    font-family:'Spectral',serif;font-weight:600;font-size:24px;line-height:1.2;
+    transition:color .2s;
+  }
+  .card.live:hover h3{color:var(--red)}
+  .card p{margin-top:12px;font-size:16px;font-weight:300;color:var(--ink-soft)}
+  .card .byline{margin-top:16px;font-size:11px}
+  .soon{
+    display:inline-block;font-family:'Inter',sans-serif;font-size:10px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+    border:1px dashed var(--gold);padding:3px 8px;margin-bottom:12px;
+  }
+
+  /* ---------- цитата-разделитель ---------- */
+  .bigquote{
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    background:
+      linear-gradient(rgba(23,19,14,.82),rgba(23,19,14,.82)),
+      url('55324516231_7a87ecc3fe_c.jpg') center/cover no-repeat var(--ink);
+    color:var(--paper);
+    text-align:center;padding:100px 32px;position:relative;overflow:hidden;
+  }
+  .bigquote blockquote{
+    position:relative;font-family:'Spectral',serif;font-weight:500;font-style:italic;
+    font-size:clamp(26px,3.4vw,44px);line-height:1.25;max-width:22ch;margin:0 auto;
+  }
+  .bigquote cite{
+    position:relative;display:block;margin-top:28px;font-style:normal;
+    font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* ---------- двухколоночный блок ---------- */
+  .duo{display:grid;grid-template-columns:1.6fr 1fr;gap:0;border-bottom:1px solid var(--ink)}
+  .feed{border-right:1px solid var(--line);padding:48px 40px 48px 0}
+  .feed-item{
+    display:grid;grid-template-columns:110px 1fr;gap:26px;align-items:start;
+    padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .feed-item.live{cursor:pointer}
+  .feed-item:last-child{border-bottom:none}
+  .feed-item .mini{height:110px}
+  .feed-item h4{font-family:'Spectral',serif;font-weight:600;font-size:21px;line-height:1.25;transition:color .2s}
+  .feed-item.live:hover h4{color:var(--red)}
+  .feed-item .byline{margin-top:8px;font-size:11px}
+  .pop{padding:48px 0 48px 40px}
+  .pop h3{
+    font-family:'Unbounded',sans-serif;font-weight:800;font-size:20px;
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;
+  }
+  .pop ol{list-style:none;counter-reset:n}
+  .pop li{
+    counter-increment:n;display:flex;gap:20px;align-items:baseline;
+    padding:20px 0;border-bottom:1px solid var(--line);cursor:pointer;
+  }
+  .pop li:before{
+    content:counter(n);font-family:'Unbounded',sans-serif;font-weight:900;
+    font-size:34px;color:var(--red);min-width:44px;line-height:1;
+  }
+  .pop li span{font-family:'Spectral',serif;font-weight:500;font-size:17px;line-height:1.35;transition:color .2s}
+  .pop li:hover span{color:var(--red)}
+
+  /* ---------- подписка ---------- */
+  .subscribe{
+    border-bottom:1px solid var(--ink);
+    background:repeating-linear-gradient(-45deg,var(--paper),var(--paper) 14px,var(--paper-dark) 14px,var(--paper-dark) 16px);
+    text-align:center;padding:80px 32px;
+  }
+  .subscribe h2{
+    font-family:'Unbounded',sans-serif;font-weight:900;
+    font-size:clamp(26px,4vw,52px);text-transform:uppercase;letter-spacing:-.01em;
+  }
+  .subscribe p{margin:18px auto 30px;max-width:52ch;color:var(--ink-soft);font-weight:300}
+  .subscribe .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;padding:16px 30px;cursor:pointer;
+    border:1px solid var(--ink);transition:.2s;background:var(--ink);color:var(--paper);
+  }
+  .btn:hover{background:var(--red);border-color:var(--red)}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---------- футер ---------- */
+  footer{background:var(--ink);color:var(--paper);padding:60px 32px 40px}
+  .foot-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+  .foot-brand{display:flex;gap:18px;align-items:flex-start}
+  .foot-brand .mark{height:64px;flex-shrink:0}
+  .foot-mast{font-family:'Unbounded',sans-serif;font-weight:900;font-size:40px;line-height:1}
+  .foot-mast em{font-style:normal;color:var(--red)}
+  .foot-grid p{margin-top:14px;font-size:15px;font-weight:300;color:rgba(245,241,232,.6);max-width:38ch}
+  .foot-grid h5{
+    font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:14px;
+  }
+  .foot-grid ul{list-style:none}
+  .foot-grid ul li{margin-bottom:8px}
+  .foot-grid ul a{color:rgba(245,241,232,.75);font-size:15px}
+  .foot-grid ul a:hover{color:var(--red)}
+  .foot-bottom{
+    max-width:var(--maxw);margin:44px auto 0;padding-top:22px;
+    border-top:1px solid rgba(245,241,232,.15);
+    font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,241,232,.4);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- страницы статей ---------- */
+  #reader{display:none}
+  body.reading #home{display:none}
+  body.reading #reader{display:block}
+  .art{display:none}
+  .art.open{display:block}
+  .art-hero{color:var(--paper);padding:110px 32px 70px;border-bottom:1px solid var(--ink)}
+  .art-hero--red{background:radial-gradient(circle at 80% 15%, rgba(242,59,19,.65), transparent 55%),linear-gradient(165deg,#2A0D06,#5E1403 65%,#17130E)}
+  .art-hero--burg{background:
+    linear-gradient(165deg, rgba(38,0,15,.88), rgba(140,3,78,.62) 75%, rgba(26,0,9,.9)),
+    url('55323604792_6ede40f4f2_c.jpg') center 25%/cover no-repeat #26000F}
+  .art-hero--blue{background:radial-gradient(circle at 80% 15%, rgba(146,223,254,.35), transparent 55%),linear-gradient(165deg,#041224,#0561D9 80%,#02264F)}
+  .art-hero .wrap{max-width:900px}
+  .art-hero h1{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(34px,5vw,60px);line-height:1.08;margin-top:8px;
+  }
+  .art-hero .deck{margin-top:22px;font-size:21px;font-weight:300;color:rgba(245,241,232,.78);max-width:52ch}
+  .art-hero .byline{color:rgba(245,241,232,.6)}
+  .art-hero .byline b{color:var(--paper)}
+  .art-body{max-width:720px;margin:0 auto;padding:70px 32px 40px}
+  .art-body p{margin-bottom:26px;font-size:19px;font-weight:400;line-height:1.75}
+  .art-body p.lead:first-letter{
+    font-family:'Unbounded',sans-serif;font-weight:900;color:var(--red);
+    font-size:86px;float:left;line-height:.78;padding:8px 14px 0 0;
+  }
+  .art-body h2{
+    font-family:'Unbounded',sans-serif;font-weight:800;font-size:22px;
+    text-transform:uppercase;letter-spacing:.02em;margin:48px 0 22px;
+  }
+  .art-body sup{color:var(--red);font-family:'Inter',sans-serif;font-size:12px}
+  .pull{
+    margin:44px 0;padding:8px 0 8px 30px;border-left:4px solid var(--red);
+    font-family:'Spectral',serif;font-style:italic;font-weight:500;
+    font-size:27px;line-height:1.35;color:var(--ink);
+  }
+  .refs{margin-top:50px;border-top:1px solid var(--ink);padding-top:24px}
+  .refs summary{
+    font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.1em;cursor:pointer;color:var(--ink-soft);
+  }
+  .refs summary:hover{color:var(--red)}
+  .refs ol{margin:18px 0 0 20px}
+  .refs li{font-size:14px;color:var(--ink-soft);margin-bottom:8px;line-height:1.5}
+  .art-author{
+    max-width:720px;margin:30px auto 0;padding:30px 32px 60px;
+    border-top:1px solid var(--ink);display:flex;gap:20px;align-items:center;
+  }
+  .art-author .ava{
+    width:64px;height:64px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Unbounded',sans-serif;font-weight:900;color:var(--paper);font-size:24px;
+  }
+  .ava--red{background:linear-gradient(140deg,var(--red),var(--gold))}
+  .ava--burg{background:linear-gradient(140deg,var(--burgundy),#E67999)}
+  .ava--blue{background:linear-gradient(140deg,#02264F,var(--blue))}
+  .art-author b{font-family:'Inter',sans-serif;font-size:15px}
+  .art-author span{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-soft)}
+  .backbar{
+    position:sticky;top:0;z-index:10;background:var(--paper);
+    border-bottom:1px solid var(--ink);
+  }
+  .backbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 32px}
+  .backbar .logo{
+    font-family:'Unbounded',sans-serif;font-weight:900;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;gap:10px;
+  }
+  .backbar .logo .mark{height:26px}
+  .backbar .logo em{font-style:normal;color:var(--red)}
+  .backbtn{
+    font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;cursor:pointer;color:var(--ink-soft);
+  }
+  .backbtn:hover{color:var(--red)}
+  .related{border-top:3px solid var(--ink);background:var(--paper-dark);padding-bottom:60px}
+  .related .sect-head{border-bottom:1px solid var(--ink)}
+  .related .cards{grid-template-columns:1fr 1fr}
+
+  /* ---------- появление при скролле ---------- */
+  .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .rev.on{opacity:1;transform:none}
+
+  /* ---------- адаптив ---------- */
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art{min-height:300px;border-right:none;border-bottom:1px solid var(--ink)}
+    .cards{grid-template-columns:1fr 1fr}
+    .duo{grid-template-columns:1fr}
+    .feed{border-right:none;padding-right:0}
+    .pop{padding-left:0;border-top:1px solid var(--ink)}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    .cards{grid-template-columns:1fr}
+    .related .cards{grid-template-columns:1fr}
+    .hero-body{padding:40px 28px}
+    .topbar .date{display:none}
+    nav.rubrics a{padding:14px 18px;font-size:11px}
+    .mast-inner .mark{height:60px}
+  }
+</style>
+</head>
+<body>
+
+<!-- логотип-знак: используется через <use> -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ================= ГЛАВНАЯ ================= -->
+<div id="home">
+
+  <div class="topbar">
+    <div class="brand"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg></div>
+    <div class="date">Четверг, 2 июля 2026</div>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span><b>Сегодня в номере:</b> «Не убий» и солдат — может ли убийство быть оправдано?</span>
+        <span>Выгорание в служении: как помогать другим и не перегореть самому</span>
+        <span>Совершаются ли чудеса сегодня?</span>
+        <span><b>Фестиваль «Встреча»:</b> свет Христов просвещает всех</span>
+        <span><b>Сегодня в номере:</b> «Не убий» и солдат — может ли убийство быть оправдано?</span>
+        <span>Выгорание в служении: как помогать другим и не перегореть самому</span>
+        <span>Совершаются ли чудеса сегодня?</span>
+        <span><b>Фестиваль «Встреча»:</b> свет Христов просвещает всех</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="mast">
+    <div class="mast-inner">
+      <div class="mast-title"><em>В</em>СТРЕЧА</div>
+      <div class="mast-sub">студенческий медиажурнал московской духовной академии</div>
+    </div>
+    <nav class="rubrics">
+      <a href="#" class="hot">Человек</a>
+      <a href="#">Мир</a>
+      <a href="#">Лайфстайл</a>
+      <a href="#">Наука</a>
+      <a href="#">О журнале</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-art">
+        <div class="cap">Фото: фестиваль «Встреча — 2026»</div>
+      </div>
+      <div class="hero-body">
+        <span class="tag">Мир</span>
+        <h1 class="hero-title" onclick="openArticle('a1')">«Не убий» и солдат: может ли убийство быть оправдано?</h1>
+        <p class="hero-deck">Шестая заповедь ставит перед христианином нравственный абсолют. Но как соотнести её с реальностью войны — и почему Церковь не называет воина убийцей?</p>
+        <div class="byline">Текст: <b>Иван Заугаров</b> · 4 курс бакалавриата · 6 минут</div>
+        <div class="readmore" onclick="openArticle('a1')">Читать →</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap rev">
+    <div class="sect-head">
+      <h2>Чело<span>в</span>ек</h2>
+      <a href="#">Вся рубрика →</a>
+    </div>
+    <div class="cards">
+      <article class="card live" onclick="openArticle('a2')">
+        <div class="ph ph--img" style="background-image:url('55323604792_6ede40f4f2_c.jpg')"></div>
+        <div class="card-in">
+          <h3>Выгорание в служении: как помогать другим и не перегореть самому</h3>
+          <p>Что Патриарх, святые отцы и «Лествица» говорят о состоянии, которое сегодня называют выгоранием.</p>
+          <div class="byline">Олег Бушуев · 5 мин</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph ph--img" style="background-image:url('55324733194_1335d96738_c.jpg')"></div>
+        <div class="card-in">
+          <span class="soon">Скоро в номере</span>
+          <h3>Регент: человек, который слышит хор до того, как он запел</h3>
+          <p>Один день с регентом академического хора — от распевки до последнего «Аминь».</p>
+          <div class="byline">Портрет</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph ph--green"><div class="g">Ч</div></div>
+        <div class="card-in">
+          <span class="soon">Скоро в номере</span>
+          <h3>Зачем я пришёл в семинарию: пять честных ответов первокурсников</h3>
+          <p>Никто из них не отвечает так, как вы ожидаете. Монологи без купюр.</p>
+          <div class="byline">Интервью</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="bigquote rev">
+    <blockquote>«Все самое прекрасное у людей начинается со Встречи»</blockquote>
+  </section>
+
+  <section class="wrap rev">
+    <div class="sect-head">
+      <h2>Мир · Наука · <span>Лайфстайл</span></h2>
+      <a href="#">Все материалы →</a>
+    </div>
+    <div class="duo">
+      <div class="feed">
+        <div class="feed-item live" onclick="openArticle('a3')">
+          <div class="mini ph--blue"></div>
+          <div>
+            <span class="tag">Наука</span>
+            <h4>Совершаются ли чудеса сегодня?</h4>
+            <div class="byline">Илья Новик · 6 мин</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="mini ph--red"></div>
+          <div>
+            <span class="tag">Лайфстайл</span>
+            <h4>Что читает студент Академии: восемь книг не по программе</h4>
+            <div class="byline">Скоро в номере</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="mini ph--slate"></div>
+          <div>
+            <span class="tag">Мир</span>
+            <h4>Никоно-Радонежские чтения: главное за три дня — в десяти цитатах</h4>
+            <div class="byline">Скоро в номере</div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="mini ph--green"></div>
+          <div>
+            <span class="tag">Наука</span>
+            <h4>Греческий за завтраком: методики, которые действительно работают</h4>
+            <div class="byline">Скоро в номере</div>
+          </div>
+        </div>
+      </div>
+      <aside class="pop">
+        <h3>Популярное</h3>
+        <ol>
+          <li onclick="openArticle('a1')"><span>«Не убий» и солдат: может ли убийство быть оправдано?</span></li>
+          <li onclick="openArticle('a2')"><span>Выгорание в служении: как помогать и не перегореть</span></li>
+          <li onclick="openArticle('a3')"><span>Совершаются ли чудеса сегодня?</span></li>
+          <li><span>Фестиваль «Встреча — 2026»: как это было</span></li>
+          <li><span>Восемь книг не по программе</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="subscribe rev">
+    <h2>Не пропускайте встречу</h2>
+    <p>Раз в неделю — лучшие тексты номера, анонсы событий Академии и то, что не попало на сайт. Без спама и «доброго утречка».</p>
+    <div class="btns">
+      <a class="btn" href="https://t.me/mda_vstrecha" target="_blank">Telegram</a>
+      <a class="btn btn--ghost" href="https://vk.com/mda_vstrecha" target="_blank">ВКонтакте</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+        <div>
+          <div class="foot-mast"><em>В</em>СТРЕЧА</div>
+          <p>Студенческий медиажурнал Московской духовной академии. Делаем тексты о людях, вере, науке и жизни — так, чтобы их хотелось дочитать.</p>
+        </div>
+      </div>
+      <div>
+        <h5>Рубрики</h5>
+        <ul>
+          <li><a href="#">Человек</a></li>
+          <li><a href="#">Мир</a></li>
+          <li><a href="#">Лайфстайл</a></li>
+          <li><a href="#">Наука</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Журнал</h5>
+        <ul>
+          <li><a href="#">О журнале</a></li>
+          <li><a href="#">Редакция</a></li>
+          <li><a href="#">Предложить тему</a></li>
+          <li><a href="https://t.me/mda_vstrecha" target="_blank">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© «Встреча», 2026 · МДА, Сергиев Посад</span>
+      <span>Дизайн-макет</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ================= ЧИТАЛКА ================= -->
+<div id="reader">
+
+  <div class="backbar">
+    <div class="wrap">
+      <div class="logo" onclick="closeArticle()">
+        <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+        <span><em>В</em>СТРЕЧА</span>
+      </div>
+      <div class="backbtn" onclick="closeArticle()">← На главную</div>
+    </div>
+  </div>
+
+  <!-- ===== Статья 1: Не убий ===== -->
+  <div class="art" id="a1">
+    <div class="art-hero art-hero--red">
+      <div class="wrap">
+        <span class="tag tag--dark">Мир · Богословие</span>
+        <h1>«Не убий» и солдат: может ли убийство быть оправдано?</h1>
+        <p class="deck">Шестая заповедь Декалога ставит перед каждым христианином нравственный абсолют. Но как соотнести её с реальностью войны, когда солдат вынужден лишать жизни противника?</p>
+        <div class="byline">Текст: <b>Иван Заугаров</b>, студент 4 курса бакалавриата МДА · 6 минут</div>
+      </div>
+    </div>
+    <div class="art-body">
+      <p class="lead">Шестая заповедь Декалога — «Не убий»<sup>1</sup> — ставит перед каждым христианином нравственный абсолют, запрещающий посягательство на жизнь ближнего. Однако в истории человечества и в жизни Церкви неизменно вставал вопрос: как соотнести эту заповедь с реальностью войны, когда солдат вынужден лишать жизни противника? Может ли убийство быть оправдано в свете православного учения?</p>
+      <p>Прежде всего необходимо отметить, что библейское «לא תרצח» (lo tirtsach) точнее переводится как «не убивай (неправедно, не совершай убийства)», то есть не совершай преднамеренного убийства невинного человека. Святоотеческая традиция раскрывает эту заповедь шире: речь идёт не только о физическом убийстве, но и об убийстве словом, ненавистью, злобой. Святитель Василий Великий говорит: «Заповедь "не убий" относится не только к делу руками, но и к расположению сердца»<sup>2</sup>.</p>
+      <p>Церковь никогда не воспринимала войну как благо, однако признавала её иногда как «меньшее зло», допускаемое для защиты ближних и Отечества. Святитель Василий Великий в 13-м правиле указывает, что солдат, участвовавший в кровопролитии на войне, не подлежит отлучению от Церкви, но всё же должен воздержаться от причащения в течение трёх лет, «как очищающийся от греха, хотя и не вменяемого ему в убийство»<sup>3</sup>.</p>
+      <div class="pull">«Не тот убивает, кто меч поднимает ради защиты отечества, но тот, кто вражду и злобу имеет в сердце»</div>
+      <p>Так святитель Иоанн Златоуст отмечает в толковании на Евангелие от Матфея<sup>4</sup>. Таким образом, для отцов Церкви важно не столько внешнее действие, сколько внутренняя мотивация.</p>
+      <p>Воин, сражающийся ради защиты Родины, в православной традиции воспринимается не как убийца, но как защитник. В литургической памяти Церковь чтит святых воинов — Георгия Победоносца, Димитрия Солунского, Александра Невского. Их жизнь свидетельствует: участие в войне не является безусловным грехом, но требует трезвения, покаяния и молитвы.</p>
+      <p>Однако необходимо помнить, что даже справедливая война остаётся трагедией. Как писал митрополит Антоний Сурожский: «Церковь никогда не благословляла убийство, но лишь снисходила к нему как к неизбежности»<sup>5</sup>. Следовательно, убийство на войне нельзя оправдать в абсолютном смысле, но можно признать его вынужденным действием ради спасения других.</p>
+      <p>Таким образом, православная точка зрения утверждает: заповедь «Не убий» сохраняет абсолютную ценность и никогда не отменяется. Но в условиях войны солдат, вынужденный лишать жизни врага ради защиты ближних и Родины, не осуждается Церковью как убийца. Его деяние остаётся трагическим, требующим покаяния, но может быть понято как проявление жертвенной любви — «Нет больше той любви, как если кто положит душу свою за друзей своих»<sup>6</sup>.</p>
+      <p>В конечном счёте, оправдать убийство нельзя; можно лишь признать его скорбной необходимостью, перед лицом которой христианин должен хранить сердце от ненависти и уповать на милосердие Божие<sup>7</sup>.</p>
+      <details class="refs">
+        <summary>Примечания и источники</summary>
+        <ol>
+          <li>Исх. 20:13.</li>
+          <li>Василий Великий, свт. Правила. Правило 8 // Правила святых отцов с толкованиями. М., 1994. С. 65.</li>
+          <li>Василий Великий, свт. Правила. Правило 13 // Там же. С. 77.</li>
+          <li>Иоанн Златоуст, свт. Беседы на Евангелие от Матфея. Беседа XV, 4 // Творения свт. Иоанна Златоуста. Т. VII. СПб., 1898. С. 112.</li>
+          <li>Антоний (Блум), митр. О войне и мире. Лондон, 1980. С. 45.</li>
+          <li>Ин. 15:13.</li>
+          <li>Основы социальной концепции Русской Православной Церкви. Раздел VIII: «Вопросы войны и мира» // Журнал Московской Патриархии. 2000. № 10. С. 77–89.</li>
+        </ol>
+      </details>
+    </div>
+    <div class="art-author">
+      <div class="ava ava--red">И</div>
+      <div>
+        <b>Иван Заугаров</b>
+        <span>Студент 4 курса бакалавриата Московской духовной академии</span>
+      </div>
+    </div>
+    <section class="related">
+      <div class="wrap">
+        <div class="sect-head"><h2>Читать <span>дальше</span></h2></div>
+        <div class="cards">
+          <article class="card live" onclick="openArticle('a2')">
+            <div class="ph ph--img" style="background-image:url('55323604792_6ede40f4f2_c.jpg')"></div>
+            <div class="card-in">
+              <h3>Выгорание в служении: как помогать другим и не перегореть самому</h3>
+              <div class="byline">Человек · Олег Бушуев</div>
+            </div>
+          </article>
+          <article class="card live" onclick="openArticle('a3')">
+            <div class="ph ph--blue"><div class="g">Ч</div></div>
+            <div class="card-in">
+              <h3>Совершаются ли чудеса сегодня?</h3>
+              <div class="byline">Наука · Илья Новик</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Статья 2: Выгорание ===== -->
+  <div class="art" id="a2">
+    <div class="art-hero art-hero--burg">
+      <div class="wrap">
+        <span class="tag tag--dark">Человек · Служение</span>
+        <h1>Выгорание в служении: как помогать другим и не перегореть самому</h1>
+        <p class="deck">Что Патриарх Кирилл, святые отцы и «Лествица» говорят о состоянии, которое сегодня принято называть выгоранием, — и где Церковь видит выход.</p>
+        <div class="byline">Текст: <b>Олег Бушуев</b>, студент 4 курса бакалавриата МДА · 5 минут</div>
+      </div>
+    </div>
+    <div class="art-body">
+      <p class="lead">Священнослужитель — человек, который ежедневно полагает много сил, чтобы оказать духовную помощь, сострадание и поддержку большому количеству людей. К сожалению, иногда священнослужители, как и обычные люди, могут столкнуться с проблемой выгорания. Вот как об этой проблеме сказал Святейший Патриарх Кирилл на ежегодном Епархиальном собрании в декабре 2021 года: «Несомненно, всякий человек, чьим долгом и повседневной заботой является общение с людьми, может устать, пережить охлаждение, порой сменяющееся раздражением и неприязнью к ближним, безразличием, апатией и унынием. Все это очень часто называют общим именем выгорания». Святейший Патриарх также отметил, что выгорание может произойти из-за неправильного отношения и восприятия своего служения. Патриарх советует в такой ситуации разобраться священнику с самим собой, а от его окружения требуется молиться за этого человека и всячески помогать ему в преодолении этой проблемы.</p>
+      <p>Выгорание — это не просто психологическая усталость. В христианской антропологии это состояние затрагивает глубинные слои человеческой души, подрывая саму основу служения, а именно любовь. Митрополит Иларион (Алфеев) в своей книге «О молитве» подчёркивает: без постоянной связи с Богом любое служение превращается в механический труд, лишённый животворящей силы. Митрополит Лонгин (Корчагин) также говорит о выгорании священника следующее: «Когда сегодня в Интернете обсуждаются разного рода неприятные ситуации (например, если священник оставил служение или совершил недолжный поступок), принято оправдывать их так называемым "пастырским выгоранием". Но если священник не молится, не постится, не живёт целомудренной жизнью — это вовсе не пастырское выгорание, это окамененное нечувствие человека, который не ведёт тот образ жизни, который он должен вести соответственно своему сану. Здесь вступает в действие ещё один духовный закон: человек, находящийся рядом со святыней, не может оставаться в относительно приличном состоянии, если перестаёт жить как должно, вести себя соответственно этой святыне. Он должен расти, или он будет падать».</p>
+      <div class="pull">«Молитва — огнь, и не может не согреться молящийся, а охлаждение — свидетельство об отсутствии или умалении огня»</div>
+      <p>Святые отцы древности предупреждали о подобной опасности и о том, как с ней бороться. Так, преподобный Иоанн Лествичник в «Лествице» говорит о «холодности сердца» как о симптоме духовного истощения, когда человек продолжает творить добро, но уже без внутреннего горения. Святитель Игнатий Брянчанинов советовал, как противостоять «выгоранию»: «Искушения, изменения и охлаждения, по учению святых отцов, были со всеми подвижниками; удивляться им не надо, а надо стараться выходить из них покаянием и молитвой: молитва — огнь, и не может не согреться молящийся, а охлаждение — свидетельство об отсутствии или умалении огня, который удобно снова воспаляется от действия покаяния».</p>
+      <p>Состояние «выгорания», к сожалению, так или иначе может посетить священнослужителя, но многовековой опыт Церкви даёт ответ на то, как с этим справляться и сделать так, чтобы это состояние не посещало тебя. Для этого нужно осознанно и добросовестно относиться к своему высокому служению, вести духовный образ жизни. Господь через Священное Писание призывает к непрестанной молитве и трудам, которые должен нести священник: «бодрствуйте и молитесь, чтобы не впасть в искушение: дух бодр, плоть же немощна» (Мф. 26:41). А самое главное — не нужно быть слишком самонадеянным, так как без помощи Божией мы ничего не можем. Именно поэтому главным инструментом против выгорания, как считают святые отцы, является молитва.</p>
+    </div>
+    <div class="art-author">
+      <div class="ava ava--burg">О</div>
+      <div>
+        <b>Олег Бушуев</b>
+        <span>Студент 4 курса бакалавриата Московской духовной академии</span>
+      </div>
+    </div>
+    <section class="related">
+      <div class="wrap">
+        <div class="sect-head"><h2>Читать <span>дальше</span></h2></div>
+        <div class="cards">
+          <article class="card live" onclick="openArticle('a1')">
+            <div class="ph ph--red"><div class="g">Н</div></div>
+            <div class="card-in">
+              <h3>«Не убий» и солдат: может ли убийство быть оправдано?</h3>
+              <div class="byline">Мир · Иван Заугаров</div>
+            </div>
+          </article>
+          <article class="card live" onclick="openArticle('a3')">
+            <div class="ph ph--blue"><div class="g">Ч</div></div>
+            <div class="card-in">
+              <h3>Совершаются ли чудеса сегодня?</h3>
+              <div class="byline">Наука · Илья Новик</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Статья 3: Чудеса ===== -->
+  <div class="art" id="a3">
+    <div class="art-hero art-hero--blue">
+      <div class="wrap">
+        <span class="tag tag--dark">Наука · Богословие</span>
+        <h1>Совершаются ли чудеса сегодня?</h1>
+        <p class="deck">Библия наполнена чудесами — от неопалимой купины до хождения по водам. Почему сегодня мы не видим подобного, и правда ли, что чудеса закончились?</p>
+        <div class="byline">Текст: <b>Илья Новик</b>, студент 4 курса бакалавриата МДА · 6 минут</div>
+      </div>
+    </div>
+    <div class="art-body">
+      <p class="lead">Любой человек, который принимается за чтение библейских книг, не может не заметить, что каждая из них наполнена разными чудесами. Это и пророческое видение лествицы Иаковом; и беседа Бога с Моисеем из тернового куста, который горел и не сгорал; и бедствия, настигшие весь Египет за отказ фараона отпустить богоизбранный народ; и разделение моря во время перехода еврейского народа; и остановка Солнца во время битвы при Гаваоне; и хождения Спасителя по водам; и воскрешение Им мёртвых, и ещё множество других чудес. Так, у многих совершенно справедливо и логично могут возникать вопросы: почему сегодня мы не наблюдаем подобных явных чудес, куда исчезли эти неподдающиеся уму явления?</p>
+      <p>Под чудом обычно понимается особое действие Бога, которое выходит за рамки нашего повседневного опыта, то есть всё то, что, согласно нашему пониманию, не должно было произойти, но произошло. Однако можно заметить, что чудеса Ветхого и Нового Заветов, а также чудеса первых веков христианства и последующей истории отличаются.</p>
+      <p>Так, в Ветхом Завете чудеса, в основном, направлены для свидетельства целого народа, который был избран Богом для того, чтобы сохранить истинную веру среди мрака идолослужения и явить миру спасение через Пресвятую Богородицу. Все эти яркие чудеса были призваны побудить Израильский народ не уклоняться в язычество, а веровать в Единого Бога и доказать, что Господь действительно Создатель всего и Ему одному, а не идолам подвластны все законы и явления природы. Несколько иную картину мы наблюдаем в Новом Завете. С пришествием в мир Спасителя чудеса не стали более масштабными, а наоборот, приобрели более личный, внутренний характер. Чудеса стали направлены, по большей мере, на дела милосердия: исцеление больных, изгнание бесов и т. д. Кроме того, явные чудеса совершались уже не при таком количестве людей, как раньше: например, чудо Преображения Господа на Фаворе видели лишь три избранных ученика, а хождение по воде наблюдали лишь апостолы. Одним Спаситель говорил рассказать о чуде, совершённом Господом, а другим строго запрещал это делать — в этом также проявляется личный характер чудес.</p>
+      <p>Подобное различие мы можем наблюдать и в христианской истории. В первые века апостолы, чудесным образом получившие дар знания других языков, отправились на проповедь и совершали множество явных чудес, чтобы обратить в истинную веру язычников. Также первые мученики, над которыми издевались и которых казнили на виду у всех, молились Господу, и Он совершал чудеса для множества неверующего народа. Но со временем, когда семена, посеянные мученическими подвигами апостолов и их учеников, взросли и христианство стало государственной религией Римской империи, чудеса вновь приобрели более личный характер.</p>
+      <div class="pull">«Чудеса не прекращались и продолжают совершаться и сегодня — однако люди, удаляясь от Бога, перестали придавать им значения»</div>
+      <p>Этот переход к личному, внутреннему явился неизбежным для уверовавших людей: ведь для древних израильтян было необходимо сохранить веру в Единого Бога, а для нас, уверовавших в Бога, Который «есть любовь» (1 Ин. 4:8), недостаточно только соблюдения заповедей — самое главное: полюбить Бога, довериться Ему и стать верным Ему. Именно поэтому изменился и сам смысл всех чудес.</p>
+      <p>На самом деле чудеса не прекращались и продолжают совершаться и сегодня, однако люди, удаляясь от Бога, перестали придавать им значения или стали списывать их на случайности. Любой верующий человек, в жизни которого всегда присутствует молитва и который внимательно следит за своей духовной жизнью, может привести не одно и не два чуда, которые с ним случались. Это могут быть, казалось бы, совершенно незаметные внешним, личные чудеса, которые изменили душу человека, — и в этом их ценность. Кроме того, во многих верующих семьях есть примеры чудесного выздоровления, когда врачи «разводили руками», но Господь исцелил человека и духовно изменил не только исцелённого, но и близких, которые за него молились. Однако самое главное чудо, которое есть у православных христиан, — это возможность причащаться великих и Святых Даров, Которые Господь таинственным образом даровал нам.</p>
+      <p>Подводя итог, можно сказать, что чудеса продолжают совершаться и сегодня, а чтобы заметить их, необходима наша готовность поверить Богу и Его Промыслу, а также исполнить Его святую волю, ведь Господь сказал всем верующим в Него: «и се, Я с вами во все дни до скончания века. Аминь» (Мф. 28:20).</p>
+    </div>
+    <div class="art-author">
+      <div class="ava ava--blue">И</div>
+      <div>
+        <b>Илья Новик</b>
+        <span>Студент 4 курса бакалавриата Московской духовной академии</span>
+      </div>
+    </div>
+    <section class="related">
+      <div class="wrap">
+        <div class="sect-head"><h2>Читать <span>дальше</span></h2></div>
+        <div class="cards">
+          <article class="card live" onclick="openArticle('a1')">
+            <div class="ph ph--red"><div class="g">Н</div></div>
+            <div class="card-in">
+              <h3>«Не убий» и солдат: может ли убийство быть оправдано?</h3>
+              <div class="byline">Мир · Иван Заугаров</div>
+            </div>
+          </article>
+          <article class="card live" onclick="openArticle('a2')">
+            <div class="ph ph--img" style="background-image:url('55323604792_6ede40f4f2_c.jpg')"></div>
+            <div class="card-in">
+              <h3>Выгорание в служении: как помогать другим и не перегореть самому</h3>
+              <div class="byline">Человек · Олег Бушуев</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<script>
+  function openArticle(id){
+    document.querySelectorAll('.art').forEach(a=>a.classList.remove('open'));
+    document.getElementById(id).classList.add('open');
+    document.body.classList.add('reading');
+    window.scrollTo(0,0);
+  }
+  function closeArticle(){
+    document.body.classList.remove('reading');
+    window.scrollTo(0,0);
+  }
+
+  // плавное появление секций
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
