@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Деятельность — ВСТРЕЧА · медиапроект МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{
+    --cream:#F5F1E8;
+    --ink:#17130E;
+    --paper:#F5F1E8;
+    --red:#F23B13;
+    --green:#05A56A;
+    --blue:#0561D9;
+    --burgundy:#8C034E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);color:var(--ink);
+    font-family:'Spectral',serif;font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .mark path{fill:var(--red)}
+
+  /* ---------- навигация ---------- */
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 40px;border-bottom:2px solid var(--ink);
+  }
+  .nav-logo{display:flex;align-items:center;gap:14px}
+  .nav-logo .mark{height:34px;width:auto}
+  .nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:36px}
+  .nav-links a{
+    font-family:'Spectral',serif;font-weight:400;font-size:14px;
+    letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px;
+  }
+  .nav-links a:after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+    background:var(--red);transition:width .25s;
+  }
+  .nav-links a:hover:after,.nav-links a.on:after{width:100%}
+
+  /* ---------- титул ---------- */
+  .pagetitle{
+    padding:7vh 40px 5vh;border-bottom:2px solid var(--ink);
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .pagetitle h1{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(44px,8.5vw,124px);line-height:.95;
+  }
+  .pagetitle h1 em{font-style:normal;color:var(--red)}
+  .pagetitle p{max-width:34ch;font-size:17px;line-height:1.5;padding-bottom:12px}
+
+  /* ---------- главная новость ---------- */
+  .mainnews{display:grid;grid-template-columns:1.1fr 1fr;border-bottom:2px solid var(--ink)}
+  .mn-photo{
+    background:url('55324516231_7a87ecc3fe_c.jpg') center/cover no-repeat;
+    min-height:480px;border-right:2px solid var(--ink);position:relative;
+  }
+  .mn-photo .cap{
+    position:absolute;left:20px;bottom:16px;font-size:11px;font-weight:400;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--paper);
+    text-shadow:0 1px 6px rgba(0,0,0,.6);
+  }
+  .mn-body{padding:5.5vh 4vw;display:flex;flex-direction:column;justify-content:center;background:var(--paper)}
+  .chip{
+    align-self:flex-start;font-family:'Spectral',serif;font-weight:400;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    border:2px solid var(--red);color:var(--red);padding:7px 15px;border-radius:99px;
+    margin-bottom:22px;
+  }
+  .mn-body h2{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(28px,3.4vw,50px);line-height:1.02;
+  }
+  .mn-body p{margin-top:20px;font-size:18px;line-height:1.55;max-width:48ch}
+  .mn-body .meta{margin-top:22px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+  .mn-body .more{
+    margin-top:30px;align-self:flex-start;
+    font-family:'Spectral',serif;font-weight:400;font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;
+    background:var(--ink);color:var(--paper);padding:15px 30px;border-radius:99px;
+    transition:background .25s;
+  }
+  .mn-body .more:hover{background:var(--red)}
+
+  /* ---------- направления ---------- */
+  .dirs-head{
+    padding:6vh 40px 3vh;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .dirs-head h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(32px,4.6vw,64px)}
+  .dirs-head span{font-size:14px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+  .dir{
+    display:grid;grid-template-columns:110px 1fr auto 70px;gap:3vw;align-items:center;
+    padding:4.6vh 40px;border-top:2px solid var(--ink);
+    transition:background .3s,color .3s;position:relative;
+  }
+  .dir:last-of-type{border-bottom:2px solid var(--ink)}
+  .dir .num{font-family:'Anticva',serif;font-size:30px;opacity:.5}
+  .dir .t{font-family:'Anticva',serif;font-weight:400;font-size:clamp(24px,3.6vw,52px);line-height:1}
+  .dir .m{font-size:14px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.65;max-width:26ch}
+  .dir .arr{font-family:'Anticva',serif;font-size:44px;justify-self:end;transition:transform .3s}
+  .dir:hover .arr{transform:translate(8px,-8px)}
+  .dir:hover .num,.dir:hover .m{opacity:1}
+  .dir--green:hover{background:var(--green);color:var(--paper)}
+  .dir--red:hover{background:var(--red);color:var(--paper)}
+  .dir--blue:hover{background:var(--blue);color:var(--paper)}
+  .dir--ink:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---------- лента новостей ---------- */
+  .news-head{padding:6vh 40px 3vh}
+  .news-head h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(32px,4.6vw,64px)}
+  .news{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .n-card{
+    border-right:2px solid var(--ink);background:var(--paper);
+    display:flex;flex-direction:column;transition:background .25s;
+  }
+  .n-card:last-child{border-right:none}
+  .n-card:hover{background:#EFE8D9}
+  .n-card .ph{height:240px;background-size:cover;background-position:center;border-bottom:2px solid var(--ink)}
+  .n-card .in{padding:26px 26px 34px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .n-card .d{font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+  .n-card h3{font-family:'Anticva',serif;font-weight:400;font-size:24px;line-height:1.08}
+  .n-card p{font-size:15px;line-height:1.5;opacity:.75}
+
+  /* ---------- о проекте ---------- */
+  .about{
+    background:var(--ink);color:var(--paper);padding:9vh 40px;text-align:center;
+  }
+  .about .mark{height:70px;margin:0 auto 26px;display:block}
+  .about h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.4vw,58px)}
+  .about p{margin:22px auto 0;max-width:60ch;font-size:18px;line-height:1.6;opacity:.8}
+
+  /* ---------- футер ---------- */
+  footer{
+    background:var(--cream);padding:34px 40px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .fl{font-family:'Anticva',serif;font-size:20px;display:flex;align-items:center;gap:12px}
+  footer .fl .mark{height:26px;width:auto}
+  footer .fr{display:flex;gap:26px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer .fr a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  footer .fr a:hover{border-color:var(--red)}
+  footer .copy{width:100%;font-size:12px;opacity:.55;font-weight:400;letter-spacing:.06em}
+
+  @media(max-width:900px){
+    .nav{padding:16px 20px}
+    .nav-links{gap:18px}
+    .nav-links a{font-size:11px}
+    .nav-logo span{display:none}
+    .pagetitle,.dirs-head,.news-head{padding-left:20px;padding-right:20px}
+    .mainnews{grid-template-columns:1fr}
+    .mn-photo{min-height:300px;border-right:none;border-bottom:2px solid var(--ink)}
+    .dir{grid-template-columns:60px 1fr 50px;padding:3.6vh 20px}
+    .dir .m{display:none}
+    .news{grid-template-columns:1fr}
+    .n-card{border-right:none;border-bottom:2px solid var(--ink)}
+    .n-card:last-child{border-bottom:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+    <span>ВСТРЕЧА</span>
+  </a>
+  <div class="nav-links">
+    <a href="deyatelnost.html" class="on">Деятельность</a>
+    <a href="zhurnal.html">Журнал</a>
+    <a href="o-proekte.html">О проекте</a>
+  </div>
+</nav>
+
+<div class="pagetitle">
+  <h1>ДЕЯТЕЛЬ<em>Н</em>ОСТЬ</h1>
+  <p>События, которыми живёт «Встреча» круглый год: фестиваль, форум, чтения — и новости обо всём этом.</p>
+</div>
+
+<section class="mainnews">
+  <div class="mn-photo">
+    <div class="cap">Фото: пресс-служба МДА</div>
+  </div>
+  <div class="mn-body">
+    <span class="chip">Главная новость</span>
+    <h2>Фестиваль «Встреча — 2026» завершился гала-концертом «Свет Христов просвещает всех»</h2>
+    <p>Три фестивальных дня, гости из десяти регионов, хор Академии и полный зал. Участники получили дипломы, а мы — материал на год вперёд. Рассказываем, как это было.</p>
+    <div class="meta">Июнь 2026 · Фестиваль</div>
+    <a class="more" href="#">Читать новость</a>
+  </div>
+</section>
+
+<div class="dirs-head">
+  <h2>НАПРАВЛЕНИЯ</h2>
+  <span>чем мы занимаемся</span>
+</div>
+
+<a class="dir dir--green" href="#">
+  <span class="num">01</span>
+  <span class="t">НИКОНО-РАДОНЕЖСКИЕ ЧТЕНИЯ</span>
+  <span class="m">осень · научно-просветительская конференция</span>
+  <span class="arr">↗</span>
+</a>
+<a class="dir dir--red" href="#">
+  <span class="num">02</span>
+  <span class="t">ФЕСТИВАЛЬ «ВСТРЕЧА»</span>
+  <span class="m">июнь · международный фестиваль</span>
+  <span class="arr">↗</span>
+</a>
+<a class="dir dir--blue" href="#">
+  <span class="num">03</span>
+  <span class="t">ФОРУМ «ВСТРЕЧА»</span>
+  <span class="m">декабрь · молодёжный форум</span>
+  <span class="arr">↗</span>
+</a>
+<a class="dir dir--ink" href="o-proekte.html">
+  <span class="num">04</span>
+  <span class="t">О ПРОЕКТЕ</span>
+  <span class="m">кто мы и зачем это всё</span>
+  <span class="arr">↗</span>
+</a>
+
+<div class="news-head">
+  <h2>НОВОСТИ</h2>
+</div>
+
+<section class="news">
+  <a class="n-card" href="#">
+    <div class="ph" style="background-image:url('55323605122_42d12fcdc5_c.jpg')"></div>
+    <div class="in">
+      <span class="d">Июнь 2026 · Фестиваль</span>
+      <h3>Хор Академии открыл гала-концерт фестиваля</h3>
+      <p>«Свет Христов просвещает всех» — как прозвучала главная тема года.</p>
+    </div>
+  </a>
+  <a class="n-card" href="#">
+    <div class="ph" style="background-image:url('55324733194_1335d96738_c.jpg')"></div>
+    <div class="in">
+      <span class="d">Июнь 2026 · Фестиваль</span>
+      <h3>Молодёжные хоры — гости «Встречи»</h3>
+      <p>Певческие коллективы из разных епархий выступили на одной сцене.</p>
+    </div>
+  </a>
+  <a class="n-card" href="#">
+    <div class="ph" style="background-image:url('55323604792_6ede40f4f2_c.jpg')"></div>
+    <div class="in">
+      <span class="d">Июнь 2026 · Фестиваль</span>
+      <h3>Гости фестиваля — о самом важном</h3>
+      <p>Короткие разговоры в зале: зачем ехать на «Встречу» и что увезти с собой.</p>
+    </div>
+  </a>
+</section>
+
+<section class="about" id="about">
+  <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+  <h2>О ПРОЕКТЕ</h2>
+  <p>«Встреча» — студенческий медиапроект Московской духовной академии. Мы делаем фестиваль, форум и Никоно-Радонежские чтения, издаём журнал и рассказываем о жизни Академии так, чтобы это было интересно и абитуриенту, и студенту, и каждому, кто ищет своих. Все самое прекрасное у людей начинается со Встречи.</p>
+</section>
+
+<footer>
+  <div class="fl"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>ВСТРЕЧА</div>
+  <div class="fr">
+    <a href="https://t.me/mda_vstrecha" target="_blank">Telegram</a>
+    <a href="https://vk.com/mda_vstrecha" target="_blank">ВКонтакте</a>
+  </div>
+  <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
+</footer>
+
+</body>
+</html>

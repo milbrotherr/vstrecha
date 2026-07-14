@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте — ВСТРЕЧА · медиапроект МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{
+    --cream:#F5F1E8;
+    --ink:#17130E;
+    --paper:#F5F1E8;
+    --red:#F23B13;
+    --green:#05A56A;
+    --blue:#0561D9;
+    --burgundy:#8C034E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);color:var(--ink);
+    font-family:'Spectral',serif;font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .mark path{fill:var(--red)}
+
+  /* ---------- навигация ---------- */
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 40px;border-bottom:2px solid var(--ink);
+  }
+  .nav-logo{display:flex;align-items:center;gap:14px}
+  .nav-logo .mark{height:34px;width:auto}
+  .nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:36px}
+  .nav-links a{
+    font-family:'Spectral',serif;font-weight:400;font-size:14px;
+    letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px;
+  }
+  .nav-links a:after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+    background:var(--red);transition:width .25s;
+  }
+  .nav-links a:hover:after,.nav-links a.on:after{width:100%}
+
+  /* ---------- титул ---------- */
+  .pagetitle{
+    padding:7vh 40px 5vh;border-bottom:2px solid var(--ink);
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .pagetitle h1{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(44px,8.5vw,124px);line-height:.95;
+  }
+  .pagetitle h1 em{font-style:normal;color:var(--red)}
+  .pagetitle p{max-width:34ch;font-size:17px;line-height:1.5;padding-bottom:12px}
+
+  /* ---------- манифест ---------- */
+  .manifest{
+    padding:9vh 40px;border-bottom:2px solid var(--ink);text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .manifest .mark{height:64px;margin:0 auto 30px;display:block}
+  .manifest p{
+    font-family:'Anticva',serif;font-size:clamp(24px,3.4vw,44px);line-height:1.25;
+    max-width:26ch;margin:0 auto;
+  }
+  .manifest p em{font-style:normal;color:var(--red)}
+  .manifest .note{
+    font-family:'Spectral',serif;font-size:14px;font-weight:400;
+    letter-spacing:.2em;text-transform:uppercase;margin-top:4vh;opacity:.55;
+  }
+
+  /* ---------- секции ---------- */
+  .sect{border-bottom:2px solid var(--ink)}
+  .sect-in{display:grid;grid-template-columns:300px 1fr;gap:4vw;padding:7vh 40px}
+  .sect h2{
+    font-family:'Anticva',serif;font-weight:400;font-size:clamp(28px,3.6vw,52px);
+    line-height:1;position:sticky;top:24px;align-self:start;
+  }
+  .sect h2 span{color:var(--red)}
+  .sect .body p{font-size:18px;line-height:1.65;max-width:64ch;margin-bottom:22px}
+  .sect .body p:last-child{margin-bottom:0}
+
+  /* история: годы */
+  .year{
+    display:grid;grid-template-columns:120px 1fr;gap:3vw;
+    padding:26px 0;border-top:1px solid rgba(23,19,14,.25);
+  }
+  .year:first-of-type{border-top:none;padding-top:0}
+  .year .y{font-family:'Anticva',serif;font-size:32px;color:var(--red)}
+  .year p{font-size:17px;line-height:1.6;max-width:60ch}
+
+  /* чем занимаемся */
+  .things{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--ink);border:2px solid var(--ink)}
+  .thing{
+    background:var(--paper);padding:34px 30px;transition:background .3s,color .3s;
+  }
+  .thing .n{font-family:'Anticva',serif;font-size:22px;opacity:.5;margin-bottom:14px}
+  .thing h3{font-family:'Anticva',serif;font-weight:400;font-size:26px;line-height:1.05}
+  .thing p{margin-top:12px;font-size:15px;line-height:1.55;opacity:.75}
+  .thing--green:hover{background:var(--green);color:var(--paper)}
+  .thing--red:hover{background:var(--red);color:var(--paper)}
+  .thing--blue:hover{background:var(--blue);color:var(--paper)}
+  .thing--burg:hover{background:var(--burgundy);color:var(--paper)}
+  .thing:hover p,.thing:hover .n{opacity:1}
+
+  /* цифры */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--ink)}
+  .stat{
+    padding:5vh 24px;text-align:center;border-right:2px solid var(--ink);
+  }
+  .stat:last-child{border-right:none}
+  .stat .v{font-family:'Anticva',serif;font-size:clamp(36px,4.6vw,64px);color:var(--red)}
+  .stat .l{margin-top:8px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+
+  /* команда */
+  .team-note{font-size:15px;opacity:.6;margin-top:18px;max-width:60ch}
+  .roles{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+  .role{
+    font-family:'Spectral',serif;font-weight:400;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;
+    border:2px solid var(--ink);border-radius:99px;padding:10px 18px;
+    transition:background .25s,color .25s;
+  }
+  .role:hover{background:var(--ink);color:var(--paper)}
+
+  /* CTA */
+  .cta{
+    background:var(--ink);color:var(--paper);text-align:center;padding:9vh 40px;
+  }
+  .cta h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.6vw,60px)}
+  .cta h2 em{font-style:normal;color:var(--red)}
+  .cta p{margin:20px auto 0;max-width:52ch;font-size:18px;line-height:1.6;opacity:.8}
+  .cta .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .btn{
+    font-family:'Spectral',serif;font-weight:400;font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;padding:16px 32px;border-radius:99px;
+    background:var(--red);color:var(--paper);transition:background .25s;
+  }
+  .btn:hover{background:#D93007}
+  .btn--ghost{background:transparent;border:2px solid var(--paper)}
+  .btn--ghost:hover{background:var(--paper);color:var(--ink)}
+
+  /* ---------- футер ---------- */
+  footer{
+    background:var(--cream);padding:34px 40px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .fl{font-family:'Anticva',serif;font-size:20px;display:flex;align-items:center;gap:12px}
+  footer .fl .mark{height:26px;width:auto}
+  footer .fr{display:flex;gap:26px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer .fr a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  footer .fr a:hover{border-color:var(--red)}
+  footer .copy{width:100%;font-size:12px;opacity:.55;font-weight:400;letter-spacing:.06em}
+
+  @media(max-width:900px){
+    .nav{padding:16px 20px}
+    .nav-links{gap:18px}
+    .nav-links a{font-size:11px}
+    .nav-logo span{display:none}
+    .pagetitle{padding-left:20px;padding-right:20px}
+    .sect-in{grid-template-columns:1fr;padding:6vh 20px}
+    .sect h2{position:static;margin-bottom:24px}
+    .things{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:none}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:2px solid var(--ink)}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+    <span>ВСТРЕЧА</span>
+  </a>
+  <div class="nav-links">
+    <a href="deyatelnost.html">Деятельность</a>
+    <a href="zhurnal.html">Журнал</a>
+    <a href="o-proekte.html" class="on">О проекте</a>
+  </div>
+</nav>
+
+<div class="pagetitle">
+  <h1>О ПРО<em>Е</em>КТЕ</h1>
+  <p>Кто мы, откуда взялись и зачем делаем фестиваль, форум, чтения и журнал.</p>
+</div>
+
+<section class="manifest">
+  <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+  <p>«Все самое прекрасное у людей начинается со <em>Встречи</em>»</p>
+  <div class="note">наш девиз — и наш метод</div>
+</section>
+
+<section class="sect">
+  <div class="sect-in">
+    <h2>ИСТО<span>Р</span>ИЯ</h2>
+    <div class="body">
+      <p>«Встреча» родилась в Московской духовной академии как студенческая инициатива: несколько человек, которым хотелось, чтобы о жизни Академии узнавали не только из официальных отчётов, а из живых историй, лиц и голосов. <i>(Текст-заготовка — заменим на реальную историю проекта.)</i></p>
+      <div class="year">
+        <div class="y">20••</div>
+        <p>Первый фестиваль «Встреча»: один день, один зал и ощущение, что это надо повторять. Здесь появился девиз проекта.</p>
+      </div>
+      <div class="year">
+        <div class="y">20••</div>
+        <p>Фестиваль становится международным, к нему добавляются молодёжный форум в декабре и участие в Никоно-Радонежских чтениях.</p>
+      </div>
+      <div class="year">
+        <div class="y">20••</div>
+        <p>«Встреча» превращается в круглогодичный медиапроект: соцсети, видео, репортажи со всех событий Академии.</p>
+      </div>
+      <div class="year">
+        <div class="y">2026</div>
+        <p>Запускаем электронный журнал — тексты студентов о вере, науке и жизни, которые хочется дочитать.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="sect-in">
+    <h2>ЧТО МЫ <span>Д</span>ЕЛАЕМ</h2>
+    <div class="body">
+      <div class="things">
+        <a class="thing thing--red" href="deyatelnost.html">
+          <div class="n">01</div>
+          <h3>ФЕСТИВАЛЬ «ВСТРЕЧА»</h3>
+          <p>Июнь. Международный фестиваль: концерты, встречи, гости со всей страны и из-за рубежа.</p>
+        </a>
+        <a class="thing thing--green" href="deyatelnost.html">
+          <div class="n">02</div>
+          <h3>НИКОНО-РАДОНЕЖСКИЕ ЧТЕНИЯ</h3>
+          <p>Осень. Научно-просветительская конференция о наследии и современности.</p>
+        </a>
+        <a class="thing thing--blue" href="deyatelnost.html">
+          <div class="n">03</div>
+          <h3>ФОРУМ «ВСТРЕЧА»</h3>
+          <p>Декабрь. Молодёжный форум: разговоры о главном без официоза.</p>
+        </a>
+        <a class="thing thing--burg" href="zhurnal.html">
+          <div class="n">04</div>
+          <h3>ЖУРНАЛ</h3>
+          <p>Круглый год. Статьи студентов Академии — о вере, науке, Церкви и жизни.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><div class="v">3</div><div class="l">события в году</div></div>
+  <div class="stat"><div class="v">4 400+</div><div class="l">подписчиков</div></div>
+  <div class="stat"><div class="v">10</div><div class="l">регионов-гостей</div></div>
+  <div class="stat"><div class="v">1</div><div class="l">журнал — и он растёт</div></div>
+</section>
+
+<section class="sect">
+  <div class="sect-in">
+    <h2>КО<span>М</span>АНДА</h2>
+    <div class="body">
+      <p>Мы — студенты и выпускники Московской духовной академии: пишем, снимаем, монтируем, верстаем и организуем события. Проект живёт силами редакции и волонтёров — и всегда открыт новым людям. <i>(Здесь появятся фото и имена команды.)</i></p>
+      <div class="roles">
+        <span class="role">Редакция</span>
+        <span class="role">Авторы</span>
+        <span class="role">Фото и видео</span>
+        <span class="role">Дизайн</span>
+        <span class="role">Оргкоманда событий</span>
+        <span class="role">Волонтёры</span>
+      </div>
+      <p class="team-note">Хочешь попасть в этот список — листай ниже.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>ПРИСОЕДИНЯЙСЯ К <em>В</em>СТРЕЧЕ</h2>
+  <p>Пиши тексты, снимай, помогай на событиях — или просто читай и приходи. Начать проще всего с наших каналов.</p>
+  <div class="btns">
+    <a class="btn" href="https://t.me/mda_vstrecha" target="_blank">Telegram</a>
+    <a class="btn btn--ghost" href="https://vk.com/mda_vstrecha" target="_blank">ВКонтакте</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fl"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>ВСТРЕЧА</div>
+  <div class="fr">
+    <a href="https://t.me/mda_vstrecha" target="_blank">Telegram</a>
+    <a href="https://vk.com/mda_vstrecha" target="_blank">ВКонтакте</a>
+  </div>
+  <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
+</footer>
+
+</body>
+</html>
