@@ -53,42 +53,69 @@
     position:relative;overflow:hidden;background:var(--cream);
   }
   .still-life-window{
-    height:clamp(520px,calc(100vh - 77px),760px);position:relative;overflow:hidden;
+    height:clamp(560px,calc(100vh - 77px),760px);position:relative;overflow:hidden;
+    background:
+      linear-gradient(90deg,transparent 49.9%,rgba(23,19,14,.05) 50%,transparent 50.1%),
+      var(--cream);
   }
   .still-life{
-    position:absolute;left:50%;bottom:0;height:100%;aspect-ratio:16/9;
-    transform:translateX(-50%);transform-origin:center bottom;
-    background:url('hero-still-life.png') center/100% 100% no-repeat;
-    animation:scene-in 1.15s cubic-bezier(.2,.75,.25,1) both;
+    position:absolute;inset:0;overflow:hidden;
   }
-  .still-life:after{
-    content:"";position:absolute;left:23%;top:12%;width:26%;height:48%;
-    background:radial-gradient(ellipse at center,rgba(255,205,130,.14),transparent 68%);
-    mix-blend-mode:screen;pointer-events:none;animation:lamp-breathe 5s ease-in-out infinite;
+  .still-life:before{
+    content:"";position:absolute;width:min(44vw,620px);aspect-ratio:1;left:5%;top:6%;
+    border-radius:50%;background:var(--red);opacity:.09;
   }
-  .cover-copy{
-    position:absolute;left:40.7%;top:31.7%;width:22.9%;height:47.6%;
-    padding:2.7% 2.2%;display:flex;flex-direction:column;color:var(--ink);
-    transform:perspective(900px) rotateY(-.7deg);transform-origin:left center;
-    animation:cover-in .9s .45s cubic-bezier(.2,.75,.25,1) both;
+  .desk{
+    position:absolute;left:0;right:0;bottom:0;height:25%;background:var(--ink);
+    border-top:3px solid var(--ink);box-shadow:inset 0 14px 0 #30271D;
   }
-  .cover-title{
-    font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,3.6vw,58px);
-    line-height:.9;letter-spacing:.015em;color:var(--red);
+  .desk:after{
+    content:"";position:absolute;inset:30px 0 0;opacity:.16;
+    background:repeating-linear-gradient(90deg,transparent 0 12%,var(--paper) 12.1% 12.25%);
   }
-  .cover-quote{
-    margin-top:auto;margin-bottom:4%;font-size:clamp(12px,1.3vw,21px);line-height:1.18;
-    max-width:17ch;font-weight:400;
+  .graphic-book{
+    position:absolute;left:50%;bottom:20%;width:min(24vw,320px);aspect-ratio:.78;
+    transform:translateX(-50%);background:var(--paper);border:3px solid var(--ink);
+    box-shadow:12px 14px 0 rgba(23,19,14,.18);z-index:5;
+    animation:object-in-book .85s .15s cubic-bezier(.2,.8,.25,1) both;
   }
+  .graphic-book:after{content:"";position:absolute;top:0;right:0;bottom:0;width:7px;background:var(--red)}
+  .cover-copy{position:absolute;inset:0;padding:10% 9%;display:flex;flex-direction:column;color:var(--ink)}
+  .cover-title{font-family:'Anticva',serif;font-weight:400;font-size:clamp(34px,4.1vw,64px);line-height:.9;color:var(--red)}
+  .cover-quote{margin-top:auto;margin-bottom:4%;font-size:clamp(13px,1.35vw,21px);line-height:1.2;max-width:17ch;font-weight:400}
   .cover-quote b{color:var(--red);font-weight:400}
+  .book-stand{position:absolute;left:50%;bottom:16.5%;width:min(29vw,390px);height:58px;transform:translateX(-50%);z-index:4}
+  .book-stand:before{content:"";position:absolute;left:8%;right:8%;bottom:0;height:5px;background:var(--ink)}
+  .book-stand:after{content:"";position:absolute;left:17%;right:17%;bottom:4px;height:46px;border:4px solid var(--ink);border-top:0;transform:skewX(-14deg)}
+
+  .lamp{position:absolute;left:7%;bottom:21%;width:min(31vw,420px);height:min(58vh,430px);z-index:3;animation:object-in .85s both}
+  .lamp-arm{position:absolute;left:30%;bottom:11%;width:14px;height:74%;background:var(--ink);border-radius:10px;transform:rotate(35deg);transform-origin:bottom}
+  .lamp-arm:after{content:"";position:absolute;left:-5px;top:-5px;width:24px;height:24px;border-radius:50%;background:var(--red);border:3px solid var(--ink)}
+  .lamp-shade{position:absolute;left:46%;top:3%;width:44%;height:25%;background:var(--ink);border:3px solid var(--ink);border-radius:90% 18% 68% 24%;transform:rotate(-10deg)}
+  .lamp-shade:after{content:"";position:absolute;right:-4%;bottom:-18%;width:80%;height:38%;border-radius:50%;background:var(--red);border:3px solid var(--ink)}
+  .lamp-base{position:absolute;left:4%;bottom:0;width:62%;height:22px;border:6px solid var(--ink);border-top:0;transform:skewX(-28deg)}
+  .lamp-glow{position:absolute;left:48%;top:16%;width:58%;height:65%;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);background:linear-gradient(rgba(242,59,19,.18),transparent);animation:lamp-breathe 4.8s ease-in-out infinite}
+
+  .cup{position:absolute;right:25%;bottom:22%;width:105px;height:67px;background:var(--paper);border:3px solid var(--ink);border-radius:8px 8px 46px 46px;z-index:5;animation:object-in .8s .35s cubic-bezier(.2,.8,.25,1) both}
+  .cup:before{content:"";position:absolute;right:-34px;top:8px;width:37px;height:35px;border:7px solid var(--ink);border-left:0;border-radius:0 50% 50% 0}
+  .cup:after{content:"";position:absolute;left:-16px;right:-44px;bottom:-13px;height:9px;background:var(--paper);border:3px solid var(--ink);border-radius:50%}
+
+  .vase{position:absolute;right:8%;bottom:20%;width:115px;height:175px;background:var(--burgundy);border:3px solid var(--ink);border-radius:34% 34% 18% 18% / 18% 18% 12% 12%;z-index:4;animation:object-in .85s .25s cubic-bezier(.2,.8,.25,1) both}
+  .vase:before{content:"";position:absolute;left:31%;top:-26px;width:38%;height:34px;background:var(--burgundy);border:3px solid var(--ink);border-bottom:0;border-radius:8px 8px 0 0}
+  .vase:after{content:"";position:absolute;left:18%;top:12%;width:12px;height:67%;border-left:3px solid rgba(245,241,232,.45);border-radius:50%}
+  .wheat{position:absolute;right:5%;bottom:40%;width:190px;height:280px;z-index:2;animation:object-in .9s .4s cubic-bezier(.2,.8,.25,1) both}
+  .stem{position:absolute;left:50%;bottom:0;width:3px;height:100%;background:var(--ink);transform-origin:bottom}
+  .stem:before{content:"";position:absolute;left:-6px;top:0;width:15px;height:54px;background:repeating-linear-gradient(135deg,var(--red) 0 5px,transparent 5px 9px);border-radius:60%}
+  .stem:nth-child(1){transform:rotate(-25deg);height:78%}.stem:nth-child(2){transform:rotate(-14deg);height:92%}.stem:nth-child(3){transform:rotate(-5deg);height:82%}.stem:nth-child(4){transform:rotate(7deg);height:100%}.stem:nth-child(5){transform:rotate(17deg);height:86%}.stem:nth-child(6){transform:rotate(27deg);height:74%}
+
   .hero-copy{
     padding:34px 48px 42px;border-top:2px solid var(--ink);background:var(--cream);
   }
   .hero .sub{font-size:13px;font-weight:400;letter-spacing:.32em;text-transform:uppercase}
   .hero .slogan{margin-top:14px;max-width:34ch;font-size:clamp(20px,2vw,29px);line-height:1.35}
   .hero .slogan b{font-weight:400;color:var(--red)}
-  @keyframes scene-in{from{opacity:0;transform:translateX(-50%) scale(1.025)}to{opacity:1;transform:translateX(-50%) scale(1)}}
-  @keyframes cover-in{from{opacity:0;transform:perspective(900px) rotateY(-.7deg) translateY(12px)}to{opacity:1;transform:perspective(900px) rotateY(-.7deg) translateY(0)}}
+  @keyframes object-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes object-in-book{from{opacity:0;transform:translate(-50%,24px)}to{opacity:1;transform:translate(-50%,0)}}
   @keyframes lamp-breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.85;transform:scale(1.04)}}
 
   /* ---------- бегущая строка ---------- */
@@ -172,17 +199,27 @@
     .half{min-height:46vh;border-right:none !important}
     .half--act{border-bottom:2px solid var(--ink)}
     .half:hover{flex:1}
-    .still-life-window{height:470px}
-    .still-life{height:470px}
-    .cover-copy{padding:12px 10px}
-    .cover-title{font-size:30px}
-    .cover-quote{font-size:12px;margin-bottom:10px}
+    .still-life-window{height:520px}
+    .still-life:before{width:340px;left:-22%;top:8%}
+    .graphic-book{width:180px;bottom:22%}
+    .book-stand{width:220px;bottom:18%}
+    .cover-copy{padding:18px 16px}
+    .cover-title{font-size:27px}
+    .cover-quote{font-size:12px;margin-bottom:8px}
+    .lamp{left:-13%;bottom:23%;width:240px;height:300px}
+    .lamp-glow{display:none}
+    .cup{right:9%;bottom:21%;width:67px;height:45px}
+    .cup:before{right:-25px;width:27px;height:25px;border-width:5px}
+    .cup:after{right:-32px;bottom:-10px;height:6px}
+    .vase{right:-3%;bottom:20%;width:70px;height:112px}
+    .vase:before{top:-18px;height:24px}
+    .wheat{right:-8%;bottom:39%;width:120px;height:175px}
     .hero-copy{padding:26px 20px 30px}
     .hero .sub{font-size:9px;line-height:1.55;letter-spacing:.2em}
     .hero .slogan{margin-top:10px;font-size:18px;line-height:1.3}
   }
   @media(prefers-reduced-motion:reduce){
-    .still-life,.cover-copy,.still-life:after,.marquee-track{animation:none!important}
+    .lamp,.graphic-book,.cup,.vase,.wheat,.lamp-glow,.marquee-track{animation:none!important}
   }
 </style>
 </head>
@@ -212,10 +249,20 @@
 <section class="hero">
   <div class="still-life-window" aria-label="Журнал «Встреча» на редакционном столе">
     <div class="still-life">
-      <div class="cover-copy">
-        <div class="cover-title">ВСТРЕЧА</div>
-        <p class="cover-quote">«Все самое прекрасное у людей начинается со <b>Встречи</b>»</p>
+      <div class="lamp" aria-hidden="true">
+        <div class="lamp-glow"></div><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-base"></div>
       </div>
+      <div class="book-stand" aria-hidden="true"></div>
+      <div class="graphic-book">
+        <div class="cover-copy">
+          <div class="cover-title">ВСТРЕЧА</div>
+          <p class="cover-quote">«Все самое прекрасное у людей начинается со <b>Встречи</b>»</p>
+        </div>
+      </div>
+      <div class="cup" aria-hidden="true"></div>
+      <div class="wheat" aria-hidden="true"><i class="stem"></i><i class="stem"></i><i class="stem"></i><i class="stem"></i><i class="stem"></i><i class="stem"></i></div>
+      <div class="vase" aria-hidden="true"></div>
+      <div class="desk" aria-hidden="true"></div>
     </div>
   </div>
   <div class="hero-copy">
