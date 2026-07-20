@@ -110,26 +110,6 @@
   .thing--burg:hover{background:var(--burgundy);color:var(--paper)}
   .thing:hover p,.thing:hover .n{opacity:1}
 
-  /* цифры */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--ink)}
-  .stat{
-    padding:5vh 24px;text-align:center;border-right:2px solid var(--ink);
-  }
-  .stat:last-child{border-right:none}
-  .stat .v{font-family:'Anticva',serif;font-size:clamp(36px,4.6vw,64px);color:var(--red)}
-  .stat .l{margin-top:8px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
-
-  /* команда */
-  .team-note{font-size:15px;opacity:.6;margin-top:18px;max-width:60ch}
-  .roles{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
-  .role{
-    font-family:'Spectral',serif;font-weight:400;font-size:13px;
-    letter-spacing:.12em;text-transform:uppercase;
-    border:2px solid var(--ink);border-radius:99px;padding:10px 18px;
-    transition:background .25s,color .25s;
-  }
-  .role:hover{background:var(--ink);color:var(--paper)}
-
   /* CTA */
   .cta{
     background:var(--ink);color:var(--paper);text-align:center;padding:9vh 40px;
@@ -168,9 +148,6 @@
     .sect-in{grid-template-columns:1fr;padding:6vh 20px}
     .sect h2{position:static;margin-bottom:24px}
     .things{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr 1fr}
-    .stat:nth-child(2){border-right:none}
-    .stat:nth-child(1),.stat:nth-child(2){border-bottom:2px solid var(--ink)}
   }
 </style>
 </head>
@@ -198,37 +175,38 @@
 </nav>
 
 <div class="pagetitle">
-  <h1>О ПРО<em>Е</em>КТЕ</h1>
-  <p>Кто мы, откуда взялись и зачем делаем фестиваль, форум, чтения и журнал.</p>
+  <h1>О <em>В</em>СТРЕЧЕ</h1>
+  <p>История студенческого православного журнала Московской духовной академии — и медиапроекта сегодня.</p>
 </div>
 
 <section class="manifest">
   <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
-  <p>«Все самое прекрасное у людей начинается со <em>Встречи</em>»</p>
-  <div class="note">наш девиз — и наш метод</div>
+  <p><em>«Встреча»</em> — студенческий православный журнал Московской духовной академии, который издаётся с 1996 года.</p>
+  <div class="note">история журнала продолжается в новых встречах</div>
 </section>
 
 <section class="sect">
   <div class="sect-in">
     <h2>ИСТО<span>Р</span>ИЯ</h2>
     <div class="body">
-      <p>«Встреча» родилась в Московской духовной академии как студенческая инициатива: несколько человек, которым хотелось, чтобы о жизни Академии узнавали не только из официальных отчётов, а из живых историй, лиц и голосов. <i>(Текст-заготовка — заменим на реальную историю проекта.)</i></p>
+      <p>Журнал родился как студенческая инициатива Московской духовной академии. Он создавался не редакцией «сверху», а самими студентами — как пространство для серьёзного, живого разговора о Церкви, вере, науке и человеке.</p>
       <div class="year">
-        <div class="y">20••</div>
-        <p>Первый фестиваль «Встреча»: один день, один зал и ощущение, что это надо повторять. Здесь появился девиз проекта.</p>
+        <div class="y">1996</div>
+        <p>Студенты первого курса МДА выпускают первый номер «Встречи». Название предложил тогдашний студент, будущий архиепископ Амвросий.</p>
       </div>
       <div class="year">
-        <div class="y">20••</div>
-        <p>Фестиваль становится международным, к нему добавляются молодёжный форум в декабре и участие в Никоно-Радонежских чтениях.</p>
+        <div class="y">1998</div>
+        <p>Журнал проходит государственную регистрацию. В первые годы он выходит в чёрно-белом формате с цветной обложкой.</p>
       </div>
       <div class="year">
-        <div class="y">20••</div>
-        <p>«Встреча» превращается в круглогодичный медиапроект: соцсети, видео, репортажи со всех событий Академии.</p>
+        <div class="y">2004</div>
+        <p>«Встреча» становится полноцветной и начинает выходить по благословению Патриарха Московского и всея Руси Алексия II.</p>
       </div>
       <div class="year">
-        <div class="y">2026</div>
-        <p>Запускаем электронный журнал — тексты студентов о вере, науке и жизни, которые хочется дочитать.</p>
+        <div class="y">2006</div>
+        <p>В Московской духовной академии проходит торжественный акт к десятилетию журнала — с участием его бывших сотрудников и друзей.</p>
       </div>
+      <p><a href="https://azbyka.ru/otechnik/pravoslavnye-zhurnaly/zhurnal-vstrecha/" target="_blank" rel="noopener" style="border-bottom:1px solid var(--red);color:var(--red)">Историческая справка и выпуски журнала →</a></p>
     </div>
   </div>
 </section>
@@ -256,34 +234,9 @@
         <a class="thing thing--burg" href="zhurnal.html">
           <div class="n">04</div>
           <h3>ЖУРНАЛ</h3>
-          <p>Круглый год. Статьи студентов Академии — о вере, науке, Церкви и жизни.</p>
+          <p>Новые тексты студентов Академии — о вере, науке, Церкви и жизни; а в архиве — номера классической «Встречи».</p>
         </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="stats">
-  <div class="stat"><div class="v">3</div><div class="l">события в году</div></div>
-  <div class="stat"><div class="v">4 400+</div><div class="l">подписчиков</div></div>
-  <div class="stat"><div class="v">10</div><div class="l">регионов-гостей</div></div>
-  <div class="stat"><div class="v">1</div><div class="l">журнал — и он растёт</div></div>
-</section>
-
-<section class="sect">
-  <div class="sect-in">
-    <h2>КО<span>М</span>АНДА</h2>
-    <div class="body">
-      <p>Мы — студенты и выпускники Московской духовной академии: пишем, снимаем, монтируем, верстаем и организуем события. Проект живёт силами редакции и волонтёров — и всегда открыт новым людям. <i>(Здесь появятся фото и имена команды.)</i></p>
-      <div class="roles">
-        <span class="role">Редакция</span>
-        <span class="role">Авторы</span>
-        <span class="role">Фото и видео</span>
-        <span class="role">Дизайн</span>
-        <span class="role">Оргкоманда событий</span>
-        <span class="role">Волонтёры</span>
-      </div>
-      <p class="team-note">Хочешь попасть в этот список — листай ниже.</p>
     </div>
   </div>
 </section>

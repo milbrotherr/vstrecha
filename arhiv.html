@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Архив журнала «Встреча» — МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{--paper:#F5F1E8;--ink:#17130E;--red:#F23B13;--green:#05A56A;--blue:#0561D9;--burgundy:#8C034E;--line:#CFC6B5}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',serif;font-weight:300;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:2px solid var(--ink)}
+  .nav-logo{display:flex;align-items:center;gap:14px}.nav-logo .mark{height:34px;width:auto}.nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:36px}.nav-links a{font-size:14px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px}
+  .nav-links a:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--red);transition:width .25s}.nav-links a:hover:after{width:100%}
+  .archive-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(250px,.7fr);gap:7vw;padding:9vh 40px 7vh;border-bottom:2px solid var(--ink);align-items:end}
+  .eyebrow{font-size:13px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px;color:var(--red)}
+  h1{font-family:'Anticva',serif;font-weight:400;font-size:clamp(58px,10vw,152px);line-height:.83;letter-spacing:-.035em}h1 em{font-style:normal;color:var(--red)}
+  .archive-head p{font-size:18px;line-height:1.58;max-width:38ch}.archive-head p + p{margin-top:20px;font-size:14px;color:rgba(23,19,14,.65)}
+  .archive-head a{border-bottom:1px solid var(--red);color:var(--red)}
+  .guide{border-bottom:2px solid var(--ink);display:flex;gap:26px;align-items:center;padding:22px 40px;font-size:14px;line-height:1.45}.guide b{font-weight:500}.guide .arrow{font-family:'Anticva',serif;font-size:24px;color:var(--red)}
+  .archive{padding:0 40px}.year{display:grid;grid-template-columns:220px 1fr;gap:4vw;border-bottom:2px solid var(--ink);padding:50px 0}.year:last-child{border-bottom:0}
+  .year-label{font-family:'Anticva',serif;font-weight:400;font-size:clamp(46px,5.2vw,76px);line-height:.85;color:var(--red)}.year-label span{display:block;margin-top:16px;font-family:'Spectral',serif;font-size:11px;font-weight:400;line-height:1.35;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+  .issues{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.issue{border:2px solid var(--ink);min-height:170px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:transform .25s,background .25s,color .25s}.issue:hover{transform:translateY(-5px);color:var(--paper)}.issue:after{content:'В';position:absolute;right:-8px;bottom:-34px;font-family:'Anticva',serif;font-size:150px;line-height:1;color:currentColor;opacity:.1}.issue--red:hover{background:var(--red)}.issue--green:hover{background:var(--green)}.issue--blue:hover{background:var(--blue)}.issue--burgundy:hover{background:var(--burgundy)}
+  .issue-top,.issue-bottom{position:relative;z-index:1}.issue-top{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:400;letter-spacing:.13em;text-transform:uppercase}.issue-no{font-family:'Anticva',serif;font-size:clamp(24px,2.2vw,34px);line-height:1.05}.issue-read{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid currentColor;align-self:flex-start}
+  .outro{background:var(--ink);color:var(--paper);text-align:center;padding:8vh 40px}.outro h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(32px,4.5vw,60px);line-height:1}.outro p{max-width:52ch;margin:20px auto 0;font-size:17px;line-height:1.6;opacity:.8}.outro a{display:inline-block;margin-top:28px;background:var(--red);padding:14px 24px;border-radius:99px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer{border-top:2px solid var(--ink);padding:34px 40px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}footer .brand{font-family:'Anticva',serif;font-size:20px;letter-spacing:.04em;text-transform:none}footer a{border-bottom:2px solid transparent;padding-bottom:2px}footer a:hover{border-color:var(--red)}
+  @media(max-width:900px){.nav{padding:16px 20px}.nav-logo span{display:none}.nav-links{gap:18px}.nav-links a{font-size:11px}.archive-head{grid-template-columns:1fr;padding:7vh 20px 6vh;gap:30px}.guide{padding:18px 20px}.archive{padding:0 20px}.year{grid-template-columns:1fr;gap:26px;padding:38px 0}.year-label{font-size:54px}.year-label span{display:inline;margin-left:14px}.issues{grid-template-columns:repeat(2,minmax(0,1fr))}.outro{padding:7vh 20px}footer{padding:28px 20px}}
+  @media(max-width:480px){.issues{grid-template-columns:1fr}.issue{min-height:145px}.archive-head p{font-size:17px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs><g id="vmark"><path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/><path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/></g></defs></svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg><span>ВСТРЕЧА</span></a>
+  <div class="nav-links"><a href="deyatelnost.html">Деятельность</a><a href="zhurnal.html">Журнал</a><a href="o-proekte.html">О проекте</a></div>
+</nav>
+
+<header class="archive-head">
+  <div><div class="eyebrow">Московская духовная академия · 1996—2014</div><h1>АРХИ<em>В</em><br>ЖУРНАЛА</h1></div>
+  <div><p>Номера студенческого православного журнала «Встреча», сохранённые в открытой библиотеке «Азбука веры».</p><p>PDF открываются в новой вкладке. В архиве — все выпуски, доступные в этом собрании.</p></div>
+</header>
+
+<div class="guide"><span class="arrow">↗</span><p><b>Как пользоваться архивом.</b> Выберите год и номер — файл откроется в оригинальном PDF на сайте библиотеки.</p></div>
+
+<main class="archive" id="archive" aria-label="Архив выпусков журнала"></main>
+
+<section class="outro"><h2>У «Встречи» есть история</h2><p>А сегодня в журнале — новые тексты студентов Академии о вере, науке, Церкви и жизни.</p><a href="zhurnal.html">К современному журналу</a></section>
+
+<footer><div class="brand">ВСТРЕЧА</div><div><a href="o-proekte.html">О «Встрече»</a> · <a href="https://azbyka.ru/otechnik/pravoslavnye-zhurnaly/zhurnal-vstrecha/" target="_blank" rel="noopener">Источник архива</a></div><div>© «Встреча» · МДА</div></footer>
+
+<script>
+  const source = 'https://azbyka.ru/otechnik/assets/uploads/vstrecha/';
+  const issues = [
+    ['1996','№ 1','Встреча 1996 - 01.pdf'],['1996','№ 2','Встреча 1996 - 02.pdf'],['1996','№ 3','Встреча 1996 - 03.pdf'],
+    ['1997','№ 1 (04)','Встреча 1997 - 01 (04).pdf'],['1997','№ 2 (05)','Встреча 1997 - 02 (05).pdf'],['1997','№ 3 (06)','Встреча 1997 - 03 (06).pdf'],
+    ['1998','№ 1 (07)','Встреча 1998 - 01 (07).pdf'],['1998','№ 2 (08)','Встреча 1998 - 02 (08).pdf'],['1998','№ 3 (09)','Встреча 1998 - 03 (09).pdf'],
+    ['1999','№ 1 (10)','Встреча 1999 - 01 (10).pdf'],
+    ['2000','№ 1 (11)','Встреча 2000 - 01 (11).pdf'],['2000','№ 2 (12)','Встреча 2000 - 02 (12).pdf'],['2000','№ 3 (13)','Встреча 2000 - 03 (13).pdf'],
+    ['2001','№ 1 (14)','Встреча 2001 - 01 (14).pdf'],['2002','№ 1 (15)','Встреча 2002 - 01 (15).pdf'],['2003','№ 1 (16)','Встреча 2003 - 01 (16).pdf'],
+    ['2004','№ 1 (17)','Встреча 2004 - 01 (17).pdf'],['2004','№ 2 (18)','Встреча 2004 - 02 (18).pdf'],
+    ['2005','№ 1 (19)','Встреча 2005 - 01 (19).pdf'],['2005','№ 2 (20)','Встреча 2005 - 02 (20).pdf'],['2005','№ 3 (21)','Встреча 2005 - 03 (21).pdf'],
+    ['2006','№ 1 (22)','Встреча 2006 - 01 (22).pdf'],['2006','№ 2 (23)','Встреча 2006 - 02 (23).pdf'],
+    ['2007','№ 1 (24)','Встреча 2007 - 01 (24).pdf'],['2007','№ 2 (25)','Встреча 2007 - 02 (25).pdf'],
+    ['2008','№ 1 (26)','Встреча 2008 - 01 (26).pdf'],['2008','№ 2 (27)','Встреча 2008 - 02 (27).pdf'],
+    ['2009','№ 1 (28)','Встреча 2009 - 01 (28).pdf'],['2010','№ 1 (29)','Встреча 2010 - 01 (29).pdf'],['2011','№ 1 (30)','Встреча 2011 - 01 (30).pdf'],['2012','№ 1 (31)','Встреча 2012 - 01 (31).pdf'],
+    ['2014','№ 1 (33)','Встреча 2014 - 01 (33).pdf'],['2014','№ 2 (34)','Встреча 2014 - 02 (34).pdf']
+  ];
+  const accents = ['red','green','blue','burgundy'];
+  const grouped = issues.reduce((groups, issue) => { if (!groups[issue[0]]) groups[issue[0]] = []; groups[issue[0]].push(issue); return groups; }, {});
+  document.getElementById('archive').innerHTML = Object.entries(grouped).map(([year, list]) => `
+    <section class="year"><div class="year-label">${year}<span>${list.length} ${list.length === 1 ? 'выпуск' : list.length < 5 ? 'выпуска' : 'выпусков'}</span></div>
+      <div class="issues">${list.map((issue, index) => `<a class="issue issue--${accents[(Number(year) + index) % accents.length]}" href="${encodeURI(source + issue[2])}" target="_blank" rel="noopener" aria-label="Открыть ${issue[0]} ${issue[1]} в PDF"><span class="issue-top"><span>«Встреча»</span><span>PDF ↗</span></span><span class="issue-bottom"><span class="issue-no">${issue[1]}</span><span class="issue-read">Открыть номер</span></span></a>`).join('')}</div>
+    </section>`).join('');
+</script>
+</body>
+</html>
