@@ -149,6 +149,58 @@
     .sect h2{position:static;margin-bottom:24px}
     .things{grid-template-columns:1fr}
   }
+
+  /* ---------- мобильные исправления ---------- */
+  html,body{overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .nav{flex-wrap:wrap}
+  .nav-links{flex-wrap:wrap;row-gap:8px}
+  h1,h2,h3,.t,.word,.fact b,.step h3,.n-card h3,.mn-body h2{overflow-wrap:anywhere}
+  .dir>*,.row>*,.fact,.num-cell,.step,.n-card,.mn-body,.about-ev>*,.quote,.sec-head>*{min-width:0}
+  .num-cell span,.fact span,.dir .m,.row .m{overflow-wrap:anywhere}
+  @media(max-width:700px){
+    .hero h1{font-size:clamp(40px,14.5vw,230px)}
+    .hero .sub{letter-spacing:.2em;font-size:13px}
+    .head h1{font-size:clamp(28px,9vw,140px);line-height:.95}
+    .head .lead{font-size:17px}
+    .dir .t,.row .t{font-size:clamp(19px,5.6vw,44px)}
+    .dir{grid-template-columns:44px 1fr 34px;gap:14px}
+    .row{grid-template-columns:44px 1fr;gap:14px}
+    .dir .num,.row .num{font-size:22px}
+    .dir .arr{font-size:30px}
+    .nums{grid-template-columns:repeat(2,1fr)}
+    .num-cell{padding:5vh 14px}
+    .num-cell:nth-child(2n){border-right:none}
+    .num-cell b{font-size:clamp(34px,11vw,76px)}
+    .num-cell span,.fact span{font-size:11px;letter-spacing:.1em}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:6px}
+    .sec-head h2{font-size:clamp(26px,7.5vw,64px)}
+    .mn-body{padding:5vh 20px}
+    .mn-body h2{font-size:clamp(24px,6.5vw,50px)}
+    .step{padding:4vh 20px}
+    .about-ev h2{font-size:clamp(26px,7.5vw,58px)}
+    .quote p{font-size:clamp(19px,5.5vw,32px)}
+    .cta h2,.about h2{font-size:clamp(25px,7vw,58px)}
+    .marquee-track{font-size:18px}
+    .marquee-track span{margin:0 20px}
+  }
+  @media(max-width:360px){
+    .nav-links{gap:12px}
+    .nav-links a{font-size:10px;letter-spacing:.1em}
+    .dir .t,.row .t{font-size:18px}
+    .head h1{font-size:26px}
+  }
+  /* на тач-экранах заливки по наведению не работают — показываем акцент сразу */
+  @media(hover:none){
+    .dir,.row{position:relative}
+    .dir:before,.row:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--red))}
+    .dir--green:before{background:var(--green)}
+    .dir--red:before{background:var(--red)}
+    .dir--blue:before{background:var(--blue)}
+    .dir--ink:before{background:var(--ink)}
+    .dir:hover,.row:hover{background:transparent;color:var(--ink)}
+    .dir:hover .arr{transform:none}
+    .n-card:hover{background:transparent}
+  }
 </style>
 </head>
 <body>
@@ -168,8 +220,10 @@
     <span>ВСТРЕЧА</span>
   </a>
   <div class="nav-links">
-    <a href="deyatelnost.html">Деятельность</a>
-    <a href="zhurnal.html">Журнал</a>
+    <a href="index.html">Главная</a>
+    <a href="festival.html">Фестиваль</a>
+    <a href="forum.html">Форум</a>
+    <a href="chteniya.html">Чтения</a>
     <a href="o-proekte.html" class="on">О проекте</a>
   </div>
 </nav>
@@ -216,25 +270,25 @@
     <h2>ЧТО МЫ <span>Д</span>ЕЛАЕМ</h2>
     <div class="body">
       <div class="things">
-        <a class="thing thing--red" href="deyatelnost.html">
+        <a class="thing thing--red" href="festival.html">
           <div class="n">01</div>
           <h3>ФЕСТИВАЛЬ «ВСТРЕЧА»</h3>
           <p>Июнь. Международный фестиваль: концерты, встречи, гости со всей страны и из-за рубежа.</p>
         </a>
-        <a class="thing thing--green" href="deyatelnost.html">
+        <a class="thing thing--green" href="chteniya.html">
           <div class="n">02</div>
           <h3>НИКОНО-РАДОНЕЖСКИЕ ЧТЕНИЯ</h3>
           <p>Осень. Научно-просветительская конференция о наследии и современности.</p>
         </a>
-        <a class="thing thing--blue" href="deyatelnost.html">
+        <a class="thing thing--blue" href="forum.html">
           <div class="n">03</div>
           <h3>ФОРУМ «ВСТРЕЧА»</h3>
           <p>Декабрь. Молодёжный форум: разговоры о главном без официоза.</p>
         </a>
-        <a class="thing thing--burg" href="zhurnal.html">
+        <a class="thing thing--burg" href="https://t.me/mda_vstrecha" target="_blank" rel="noopener">
           <div class="n">04</div>
-          <h3>ЖУРНАЛ</h3>
-          <p>Новые тексты студентов Академии — о вере, науке, Церкви и жизни; а в архиве — номера классической «Встречи».</p>
+          <h3>МЕДИА И СОЦСЕТИ</h3>
+          <p>Съёмка, тексты и видео о жизни Академии — каждый день в Telegram и «ВКонтакте».</p>
         </a>
       </div>
     </div>

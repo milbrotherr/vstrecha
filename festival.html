@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фестиваль «Встреча» — ВСТРЕЧА · медиапроект МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{--cream:#F5F1E8;--paper:#F5F1E8;--ink:#17130E;--red:#F23B13;--green:#05A56A;--blue:#0561D9;--burgundy:#8C034E;--accent:var(--red)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:'Spectral',serif;font-weight:300;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:2px solid var(--ink);gap:20px;flex-wrap:wrap}
+  .nav-logo{display:flex;align-items:center;gap:14px}
+  .nav-logo .mark{height:34px;width:auto}
+  .nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:30px;flex-wrap:wrap}
+  .nav-links a{font-weight:400;font-size:14px;letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px}
+  .nav-links a:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);transition:width .25s}
+  .nav-links a:hover:after,.nav-links a.on:after{width:100%}
+
+  /* шапка события */
+  .head{padding:8vh 40px 5vh;border-bottom:2px solid var(--ink)}
+  .eyebrow{font-size:13px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  .head h1{font-family:'Anticva',serif;font-weight:400;font-size:clamp(46px,9vw,140px);line-height:.9;letter-spacing:-.01em}
+  .head h1 em{font-style:normal;color:var(--accent)}
+  .head .lead{margin-top:4vh;max-width:52ch;font-size:clamp(18px,1.7vw,22px);line-height:1.5}
+  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:5vh}
+  .fact{border:2px solid var(--ink);border-radius:14px;padding:20px}
+  .fact b{display:block;font-family:'Anticva',serif;font-weight:400;font-size:26px;line-height:1.1}
+  .fact span{display:block;margin-top:10px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+  /* о событии */
+  .about-ev{display:grid;grid-template-columns:1.2fr .8fr;gap:5vw;padding:7vh 40px;border-bottom:2px solid var(--ink)}
+  .about-ev h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.2vw,58px);line-height:1;margin-bottom:3vh}
+  .about-ev p{font-size:18px;line-height:1.6;max-width:56ch}
+  .about-ev p + p{margin-top:18px}
+  .quote{border-left:2px solid var(--accent);padding:6px 0 6px 24px;align-self:center}
+  .quote p{font-family:'Anticva',serif;font-size:clamp(22px,2.4vw,32px);line-height:1.2}
+  .quote span{display:block;margin-top:18px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+  /* программа */
+  .sec-head{padding:6vh 40px 3vh;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .sec-head h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(32px,4.6vw,64px)}
+  .sec-head span{font-size:14px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+  .row{display:grid;grid-template-columns:110px 1fr auto;gap:3vw;align-items:center;padding:4vh 40px;border-top:2px solid var(--ink);transition:background .3s,color .3s}
+  .row:last-of-type{border-bottom:2px solid var(--ink)}
+  .row:hover{background:var(--accent);color:var(--paper)}
+  .row .num{font-family:'Anticva',serif;font-size:30px;opacity:.5}
+  .row:hover .num,.row:hover .m{opacity:1}
+  .row .t{font-family:'Anticva',serif;font-weight:400;font-size:clamp(22px,3vw,44px);line-height:1}
+  .row .m{font-size:14px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.65;max-width:30ch}
+
+  /* цифры */
+  .nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:2px solid var(--ink)}
+  .num-cell{padding:6vh 30px;border-right:2px solid var(--ink);text-align:center}
+  .num-cell:last-child{border-right:none}
+  .num-cell b{display:block;font-family:'Anticva',serif;font-weight:400;font-size:clamp(40px,5vw,76px);line-height:1;color:var(--accent)}
+  .num-cell span{display:block;margin-top:14px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+
+  /* фотополоса */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:2px solid var(--ink)}
+  .gallery div{height:300px;background-size:cover;background-position:center;border-right:2px solid var(--ink)}
+  .gallery div:last-child{border-right:none}
+
+  /* участие */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .step{padding:5vh 34px;border-right:2px solid var(--ink);display:flex;flex-direction:column;gap:14px}
+  .step:last-child{border-right:none}
+  .step b{font-family:'Anticva',serif;font-weight:400;font-size:34px;color:var(--accent);line-height:1}
+  .step h3{font-family:'Anticva',serif;font-weight:400;font-size:24px;line-height:1.1}
+  .step p{font-size:16px;line-height:1.55;opacity:.8}
+
+  /* CTA */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;padding:9vh 40px}
+  .cta .mark{height:64px;margin:0 auto 26px;display:block;--logo:var(--accent)}
+  .cta h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1}
+  .cta p{margin:20px auto 0;max-width:56ch;font-size:18px;line-height:1.6;opacity:.85}
+  .cta a{display:inline-block;margin-top:30px;background:var(--accent);color:var(--paper);padding:15px 28px;border-radius:99px;font-size:13px;font-weight:400;letter-spacing:.16em;text-transform:uppercase}
+
+  footer{background:var(--cream);padding:34px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  footer .fl{font-family:'Anticva',serif;font-size:20px;display:flex;align-items:center;gap:12px}
+  footer .fl .mark{height:26px;width:auto}
+  footer .fr{display:flex;gap:26px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer .fr a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  footer .fr a:hover{border-color:var(--accent)}
+  footer .copy{width:100%;font-size:12px;opacity:.55;font-weight:400;letter-spacing:.06em}
+
+  @media(max-width:900px){
+    .nav{padding:16px 20px;gap:12px}
+    .nav-links{gap:16px}
+    .nav-links a{font-size:11px}
+    .nav-logo span{display:none}
+    .head{padding:6vh 20px 5vh}
+    .facts{grid-template-columns:1fr}
+    .about-ev{grid-template-columns:1fr;gap:5vh;padding:6vh 20px}
+    .sec-head{padding-left:20px;padding-right:20px}
+    .row{grid-template-columns:60px 1fr;padding:3.4vh 20px}
+    .row .m{display:none}
+    .nums{grid-template-columns:repeat(2,1fr)}
+    .num-cell{border-bottom:2px solid var(--ink)}
+    .num-cell:nth-child(2){border-right:none}
+    .num-cell:nth-child(3),.num-cell:nth-child(4){border-bottom:none}
+    .gallery{grid-template-columns:1fr}
+    .gallery div{height:230px;border-right:none;border-bottom:2px solid var(--ink)}
+    .gallery div:last-child{border-bottom:none}
+    .steps{grid-template-columns:1fr}
+    .step{border-right:none;border-bottom:2px solid var(--ink)}
+    .step:last-child{border-bottom:none}
+    .cta,footer{padding-left:20px;padding-right:20px}
+  }
+
+  /* ---------- мобильные исправления ---------- */
+  html,body{overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .nav{flex-wrap:wrap}
+  .nav-links{flex-wrap:wrap;row-gap:8px}
+  h1,h2,h3,.t,.word,.fact b,.step h3,.n-card h3,.mn-body h2{overflow-wrap:anywhere}
+  .dir>*,.row>*,.fact,.num-cell,.step,.n-card,.mn-body,.about-ev>*,.quote,.sec-head>*{min-width:0}
+  .num-cell span,.fact span,.dir .m,.row .m{overflow-wrap:anywhere}
+  @media(max-width:700px){
+    .hero h1{font-size:clamp(40px,14.5vw,230px)}
+    .hero .sub{letter-spacing:.2em;font-size:13px}
+    .head h1{font-size:clamp(28px,9vw,140px);line-height:.95}
+    .head .lead{font-size:17px}
+    .dir .t,.row .t{font-size:clamp(19px,5.6vw,44px)}
+    .dir{grid-template-columns:44px 1fr 34px;gap:14px}
+    .row{grid-template-columns:44px 1fr;gap:14px}
+    .dir .num,.row .num{font-size:22px}
+    .dir .arr{font-size:30px}
+    .nums{grid-template-columns:repeat(2,1fr)}
+    .num-cell{padding:5vh 14px}
+    .num-cell:nth-child(2n){border-right:none}
+    .num-cell b{font-size:clamp(34px,11vw,76px)}
+    .num-cell span,.fact span{font-size:11px;letter-spacing:.1em}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:6px}
+    .sec-head h2{font-size:clamp(26px,7.5vw,64px)}
+    .mn-body{padding:5vh 20px}
+    .mn-body h2{font-size:clamp(24px,6.5vw,50px)}
+    .step{padding:4vh 20px}
+    .about-ev h2{font-size:clamp(26px,7.5vw,58px)}
+    .quote p{font-size:clamp(19px,5.5vw,32px)}
+    .cta h2,.about h2{font-size:clamp(25px,7vw,58px)}
+    .marquee-track{font-size:18px}
+    .marquee-track span{margin:0 20px}
+  }
+  @media(max-width:360px){
+    .nav-links{gap:12px}
+    .nav-links a{font-size:10px;letter-spacing:.1em}
+    .dir .t,.row .t{font-size:18px}
+    .head h1{font-size:26px}
+  }
+  /* на тач-экранах заливки по наведению не работают — показываем акцент сразу */
+  @media(hover:none){
+    .dir,.row{position:relative}
+    .dir:before,.row:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--red))}
+    .dir--green:before{background:var(--green)}
+    .dir--red:before{background:var(--red)}
+    .dir--blue:before{background:var(--blue)}
+    .dir--ink:before{background:var(--ink)}
+    .dir:hover,.row:hover{background:transparent;color:var(--ink)}
+    .dir:hover .arr{transform:none}
+    .n-card:hover{background:transparent}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg><span>ВСТРЕЧА</span></a>
+  <div class="nav-links"><a href="index.html">Главная</a><a href="festival.html" class="on">Фестиваль</a><a href="forum.html">Форум</a><a href="chteniya.html">Чтения</a><a href="o-proekte.html">О проекте</a></div>
+</nav>
+
+<header class="head">
+  <div class="eyebrow">Июнь · международный студенческий фестиваль</div>
+  <h1>ФЕСТИ<em>В</em>АЛЬ<br>«ВСТРЕЧА»</h1>
+  <p class="lead">Текст-рыба. Одно-два предложения о фестивале: главное событие года, концерты, гости из разных регионов, общая тема сезона.</p>
+  <div class="facts">
+    <div class="fact"><b>•• — •• июня 20••</b><span>даты проведения</span></div>
+    <div class="fact"><b>Сергиев Посад</b><span>Московская духовная академия</span></div>
+    <div class="fact"><b>Вход свободный</b><span>по регистрации</span></div>
+  </div>
+</header>
+
+<section class="about-ev">
+  <div>
+    <h2>О СОБЫТИИ</h2>
+    <p>Текст-рыба. Первый абзац — в двух-трёх предложениях о том, что это за событие и для кого оно. Здесь стоит сказать главное: что человек получит, если придёт.</p>
+    <p>Второй абзац — как всё устроено: сколько дней, что происходит, кто выступает, чем занимаются участники между основными частями программы.</p>
+    <p>Третий абзац — про историю: с какого года проводим, как менялось, что стало традицией. Заменим на реальный текст, когда соберём фактуру.</p>
+  </div>
+  <blockquote class="quote">
+    <p>«Здесь будет короткая цитата участника или организатора — две-три строки»</p>
+    <span>Имя Фамилия · роль</span>
+  </blockquote>
+</section>
+
+<div class="sec-head">
+  <h2>ПРОГРАММА</h2>
+  <span>структура события</span>
+</div>
+
+<div class="row"><span class="num">01</span><span class="t">ОТКРЫТИЕ</span><span class="m">общий сбор и первый вечер</span></div>
+<div class="row"><span class="num">02</span><span class="t">КОНКУРСНАЯ ПРОГРАММА</span><span class="m">выступления участников</span></div>
+<div class="row"><span class="num">03</span><span class="t">ВСТРЕЧИ И МАСТЕРСКИЕ</span><span class="m">разговоры, лекции, практика</span></div>
+<div class="row"><span class="num">04</span><span class="t">ГАЛА-КОНЦЕРТ</span><span class="m">финал и награждение</span></div>
+
+<section class="nums">
+  <div class="num-cell"><b>••</b><span>участников</span></div>
+  <div class="num-cell"><b>••</b><span>регионов</span></div>
+  <div class="num-cell"><b>••</b><span>дня программы</span></div>
+  <div class="num-cell"><b>20••</b><span>год первого проведения</span></div>
+</section>
+
+<div class="sec-head">
+  <h2>КАК ЭТО ВЫГЛЯДИТ</h2>
+  <span>фото заменим на съёмку события</span>
+</div>
+
+<section class="gallery">
+  <div style="background-image:url('55324516231_7a87ecc3fe_c.jpg')"></div>
+  <div style="background-image:url('55323605122_42d12fcdc5_c.jpg')"></div>
+  <div style="background-image:url('55324733194_1335d96738_c.jpg')"></div>
+</section>
+
+<div class="sec-head">
+  <h2>КАК УЧАСТВОВАТЬ</h2>
+  <span>три шага</span>
+</div>
+
+<section class="steps">
+  <div class="step"><b>01</b><h3>Подать заявку</h3><p>Текст-рыба: одно-два предложения о том, что нужно сделать на этом шаге и до какого числа.</p></div>
+  <div class="step"><b>02</b><h3>Дождаться отбора</h3><p>Текст-рыба: одно-два предложения о том, что нужно сделать на этом шаге и до какого числа.</p></div>
+  <div class="step"><b>03</b><h3>Приехать на фестиваль</h3><p>Текст-рыба: одно-два предложения о том, что нужно сделать на этом шаге и до какого числа.</p></div>
+</section>
+
+<section class="cta">
+  <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+  <h2>ДО ВСТРЕЧИ НА ФЕСТИВАЛЕ</h2>
+  <p>Текст-рыба. Здесь — призыв на две-три строки: следите за анонсами, подавайте заявку, приходите. Ссылку заменим на форму или на пост в Telegram.</p>
+  <a href="https://t.me/mda_vstrecha" target="_blank" rel="noopener">Следить в Telegram</a>
+</section>
+
+<footer>
+  <div class="fl"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>ВСТРЕЧА</div>
+  <div class="fr">
+    <a href="https://t.me/mda_vstrecha" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://vk.com/mda_vstrecha" target="_blank" rel="noopener">ВКонтакте</a>
+  </div>
+  <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
+</footer>
+
+</body>
+</html>
