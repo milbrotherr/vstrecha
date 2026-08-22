@@ -191,6 +191,17 @@
     .nav-links a.on{color:var(--red)}
     .nav-links a.on:after{width:0}
   }
+
+  /* ---------- мобильные: шапки нет, только плавающий бургер ---------- */
+  @media(max-width:700px){
+    .nav{position:fixed;top:0;right:0;left:auto;width:auto;
+      padding:12px;border-bottom:none;background:transparent;
+      z-index:120;gap:0;flex-wrap:nowrap;justify-content:flex-end}
+    .nav-logo{display:none}
+    .burger{background:var(--paper);box-shadow:0 3px 14px rgba(23,19,14,.18)}
+    .burger.open{background:transparent;box-shadow:none}
+    .pagetitle,.head,.hero{padding-top:9vh}
+  }
 </style>
 </head>
 <body>
