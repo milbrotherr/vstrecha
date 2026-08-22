@@ -167,6 +167,30 @@
     .dir:hover .arr{transform:none}
     .n-card:hover{background:transparent}
   }
+
+  /* ---------- бургер-меню (мобильные) ---------- */
+  .burger{display:none;position:relative;z-index:120;width:44px;height:44px;border:2px solid var(--ink);border-radius:12px;background:transparent;cursor:pointer;padding:0;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+  .burger span{display:block;width:20px;height:2px;background:var(--ink);transition:transform .3s,opacity .2s}
+  .burger.open{border-color:rgba(245,241,232,.5)}
+  .burger.open span{background:var(--paper)}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  body.menu-open{overflow:hidden}
+  @media(max-width:700px){
+    .nav{flex-wrap:nowrap;align-items:center}
+    .burger{display:flex}
+    .nav-links{position:fixed;inset:0;z-index:110;background:var(--ink);color:var(--paper);
+      flex-direction:column;justify-content:center;align-items:center;gap:0;row-gap:0;
+      opacity:0;visibility:hidden;transform:translateY(-14px);transition:opacity .28s,transform .28s,visibility .28s;
+      padding:80px 24px 40px}
+    .nav-links.open{opacity:1;visibility:visible;transform:none}
+    .nav-links a{font-family:'Anticva',serif;font-size:clamp(26px,8vw,40px);letter-spacing:.02em;
+      text-transform:uppercase;padding:14px 4px;line-height:1.1;text-align:center}
+    .nav-links a:after{left:50%;transform:translateX(-50%);height:2px;background:var(--red)}
+    .nav-links a.on{color:var(--red)}
+    .nav-links a.on:after{width:0}
+  }
 </style>
 </head>
 <body>
@@ -182,7 +206,11 @@
 
 <nav class="nav">
   <a class="nav-logo" href="index.html"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg><span>ВСТРЕЧА</span></a>
-  <div class="nav-links"><a href="index.html">Главная</a><a href="festival.html" class="on">Фестиваль</a><a href="forum.html">Форум</a><a href="chteniya.html">Чтения</a><a href="o-proekte.html">О проекте</a></div>
+  <div class="nav-links" id="nav-links"><a href="index.html">Главная</a><a href="festival.html" class="on">Фестиваль</a><a href="forum.html">Форум</a><a href="chteniya.html">Чтения</a><a href="o-proekte.html">О проекте</a></div>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+
 </nav>
 
 <header class="head">
@@ -263,6 +291,23 @@
   </div>
   <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
 </footer>
+
+<script>
+  (function(){
+    var b=document.querySelector('.burger'), m=document.getElementById('nav-links');
+    if(!b||!m)return;
+    function set(open){
+      b.classList.toggle('open',open);
+      m.classList.toggle('open',open);
+      document.body.classList.toggle('menu-open',open);
+      b.setAttribute('aria-expanded',open?'true':'false');
+    }
+    b.addEventListener('click',function(){set(!m.classList.contains('open'))});
+    m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+    window.addEventListener('resize',function(){if(window.innerWidth>700)set(false)});
+  })();
+</script>
 
 </body>
 </html>

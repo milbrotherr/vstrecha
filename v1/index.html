@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВСТРЕЧА — студенческий медиапроект МДА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{
+    --cream:#F5F1E8;
+    --ink:#17130E;
+    --paper:#F5F1E8;
+    --red:#F23B13;
+    --green:#05A56A;
+    --blue:#0561D9;
+    --burgundy:#8C034E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);color:var(--ink);
+    font-family:'Spectral',serif;font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .mark path{fill:var(--red)}
+
+  /* ---------- навигация ---------- */
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 40px;border-bottom:2px solid var(--ink);
+  }
+  .nav-logo{display:flex;align-items:center;gap:14px}
+  .nav-logo .mark{height:34px;width:auto}
+  .nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:36px}
+  .nav-links a{
+    font-family:'Spectral',serif;font-weight:400;font-size:14px;
+    letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px;
+  }
+  .nav-links a:after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+    background:var(--red);transition:width .25s;
+  }
+  .nav-links a:hover:after{width:100%}
+
+  /* ---------- герой ---------- */
+  .hero{
+    text-align:center;padding:9vh 24px 7vh;position:relative;overflow:hidden;
+  }
+  .hero h1{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(64px,15.5vw,230px);line-height:.94;letter-spacing:.01em;
+  }
+  .hero h1 em{font-style:normal;color:var(--red)}
+  .hero .sub{
+    margin-top:3.2vh;font-size:15px;font-weight:400;
+    letter-spacing:.34em;text-transform:uppercase;
+  }
+  .hero .slogan{
+    margin:4vh auto 0;max-width:34ch;
+    font-size:clamp(19px,2.2vw,26px);line-height:1.4;
+  }
+  .hero .slogan b{font-weight:400;color:var(--red)}
+  .dots{display:flex;justify-content:center;gap:16px;margin-top:5vh}
+  .dots i{width:22px;height:22px;border-radius:50%;display:block}
+  .dots i:nth-child(1){background:var(--red)}
+  .dots i:nth-child(2){background:var(--green)}
+  .dots i:nth-child(3){background:var(--blue)}
+  .dots i:nth-child(4){background:var(--burgundy)}
+  .dots i:nth-child(5){background:var(--ink)}
+
+  /* ---------- бегущая строка ---------- */
+  .marquee{
+    background:var(--red);color:var(--paper);
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    overflow:hidden;white-space:nowrap;
+  }
+  .marquee-track{
+    display:inline-block;padding:14px 0;
+    font-family:'Anticva',serif;font-size:22px;letter-spacing:.08em;
+    animation:mq 30s linear infinite;
+  }
+  .marquee-track span{margin:0 34px}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- сплит-блок ---------- */
+  .split{display:flex;min-height:74vh;border-bottom:2px solid var(--ink)}
+  .half{
+    flex:1;display:flex;flex-direction:column;justify-content:space-between;
+    padding:6vh 4vw;position:relative;overflow:hidden;
+    transition:flex .5s cubic-bezier(.6,0,.3,1), background .4s;
+  }
+  .half:hover{flex:2.1}
+  .half .chip{
+    align-self:flex-start;font-family:'Spectral',serif;font-weight:400;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    border:2px solid currentColor;padding:8px 16px;border-radius:99px;
+  }
+  .half .word{
+    font-family:'Anticva',serif;font-size:clamp(28px,4.9vw,96px);
+    line-height:.96;letter-spacing:.01em;white-space:nowrap;
+  }
+  .half .desc{
+    margin-top:2.4vh;font-size:clamp(15px,1.3vw,19px);line-height:1.5;max-width:36ch;
+    opacity:.85;
+  }
+  .half .go{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:5vh;font-family:'Spectral',serif;font-weight:400;
+    font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  }
+  .half .go .arr{
+    font-family:'Anticva',serif;font-size:52px;line-height:1;
+    transition:transform .35s;
+  }
+  .half:hover .go .arr{transform:translate(10px,-10px)}
+  .half--act{background:var(--red);color:var(--paper);border-right:2px solid var(--ink)}
+  .half--act:hover{background:#D93007}
+  .half--mag{background:var(--ink);color:var(--paper)}
+  .half--mag:hover{background:#211A12}
+  .half--mag .word em{font-style:normal;color:var(--red)}
+  .half .bigmark{
+    position:absolute;right:-6%;bottom:-24%;height:75%;
+    pointer-events:none;transition:opacity .4s, transform .5s;
+  }
+  .half:hover .bigmark{transform:translateY(-12px)}
+  .half--act .bigmark{opacity:.3;--logo:var(--paper)}
+  .half--mag .bigmark{opacity:.75;--logo:var(--red)}
+  .half--mag:hover .bigmark{opacity:.95}
+
+  /* ---------- футер ---------- */
+  footer{
+    background:var(--cream);padding:34px 40px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .fl{font-family:'Anticva',serif;font-size:20px;display:flex;align-items:center;gap:12px}
+  footer .fl .mark{height:26px;width:auto}
+  footer .fr{display:flex;gap:26px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer .fr a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  footer .fr a:hover{border-color:var(--red)}
+  footer .copy{width:100%;font-size:12px;opacity:.55;font-weight:400;letter-spacing:.06em}
+
+  @media(max-width:820px){
+    .nav{padding:16px 20px}
+    .nav-links{gap:18px}
+    .nav-links a{font-size:11px}
+    .nav-logo span{display:none}
+    .split{flex-direction:column;min-height:unset}
+    .half{min-height:46vh;border-right:none !important}
+    .half--act{border-bottom:2px solid var(--ink)}
+    .half:hover{flex:1}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+    <span>ВСТРЕЧА</span>
+  </a>
+  <div class="nav-links">
+    <a href="deyatelnost.html">Деятельность</a>
+    <a href="zhurnal.html">Журнал</a>
+    <a href="o-proekte.html">О проекте</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1><em>В</em>СТРЕЧА</h1>
+  <div class="sub">студенческий медиапроект московской духовной академии</div>
+  <p class="slogan">«Все самое прекрасное у людей начинается со <b>Встречи</b>»</p>
+  <div class="dots"><i></i><i></i><i></i><i></i><i></i></div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>ФЕСТИВАЛЬ</span><span>✦</span><span>ЖУРНАЛ</span><span>✦</span><span>ФОРУМ</span><span>✦</span><span>НИКОНО-РАДОНЕЖСКИЕ ЧТЕНИЯ</span><span>✦</span>
+    <span>ФЕСТИВАЛЬ</span><span>✦</span><span>ЖУРНАЛ</span><span>✦</span><span>ФОРУМ</span><span>✦</span><span>НИКОНО-РАДОНЕЖСКИЕ ЧТЕНИЯ</span><span>✦</span>
+  </div>
+</div>
+
+<section class="split">
+  <a class="half half--act" href="deyatelnost.html">
+    <span class="chip">события · новости</span>
+    <div>
+      <div class="word">ДЕЯТЕЛЬНОСТЬ</div>
+      <p class="desc">Фестиваль, форум, Никоно-Радонежские чтения и всё, чем живёт «Встреча» в течение года.</p>
+    </div>
+    <div class="go"><span>Смотреть</span><span class="arr">↗</span></div>
+    <svg class="bigmark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+  </a>
+  <a class="half half--mag" href="zhurnal.html">
+    <span class="chip">тексты · люди</span>
+    <div>
+      <div class="word"><em>Ж</em>УРНАЛ</div>
+      <p class="desc">Статьи о вере, науке и жизни, написанные студентами Академии — так, чтобы хотелось дочитать.</p>
+    </div>
+    <div class="go"><span>Читать</span><span class="arr">↗</span></div>
+    <svg class="bigmark" viewBox="0 0 315 587"><use href="#vmark"/></svg>
+  </a>
+</section>
+
+<footer>
+  <div class="fl"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>ВСТРЕЧА</div>
+  <div class="fr">
+    <a href="https://t.me/mda_vstrecha" target="_blank">Telegram</a>
+    <a href="https://vk.com/mda_vstrecha" target="_blank">ВКонтакте</a>
+  </div>
+  <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
+</footer>
+
+<style>
+.v1-badge{position:fixed;left:14px;bottom:14px;z-index:9999;display:flex;align-items:center;gap:10px;
+  background:#17130E;color:#F5F1E8;border-radius:99px;padding:9px 16px;
+  font-family:'Spectral',serif;font-weight:400;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 4px 18px rgba(0,0,0,.25);max-width:calc(100vw - 28px)}
+.v1-badge a{color:#F23B13;border-bottom:1px solid #F23B13;white-space:nowrap}
+@media(max-width:600px){.v1-badge{font-size:10px;padding:8px 12px;gap:7px;left:10px;bottom:10px}}
+</style>
+<div class="v1-badge">Версия до 21.08.2026 · <a href="../">смотреть новую</a></div>
+</body>
+</html>
