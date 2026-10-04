@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О журнале — ЖУРНАЛ ВСТРЕЧА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{
+    --paper:#F5F1E8;
+    --paper-dark:#EDE7D8;
+    --ink:#17130E;
+    --ink-soft:#4A443B;
+    --red:#F23B13;      /* фирменный красный «Встречи» */
+    --burgundy:#8C034E;
+    --blue:#0561D9;
+    --green:#05A56A;
+    --gold:#B98A2F;
+    --line:#D8D0BE;
+    --maxw:1280px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+  /* логотип-знак */
+  .mark path{fill:var(--red)}
+  .mark--light path{fill:var(--paper)}
+  .mark--ghost path{fill:rgba(245,241,232,.14)}
+
+  /* ---------- верхняя лента ---------- */
+  .topbar{
+    border-bottom:1px solid var(--ink);
+    font-family:'Spectral',serif;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    display:flex;align-items:center;overflow:hidden;white-space:nowrap;
+  }
+  .topbar .brand{padding:8px 20px 6px 32px;border-right:1px solid var(--ink);flex-shrink:0;display:flex;align-items:center}
+  .topbar .brand .mark{height:22px;width:auto}
+  .topbar .date{padding:10px 32px;border-right:1px solid var(--ink);flex-shrink:0;background:var(--paper)}
+  .ticker{flex:1;overflow:hidden}
+  .ticker-track{display:inline-block;padding:10px 0;animation:tick 40s linear infinite}
+  .ticker-track span{margin:0 28px;color:var(--ink-soft)}
+  .ticker-track b{color:var(--red);font-weight:600}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- шапка ---------- */
+  header.mast{border-bottom:1px solid var(--ink)}
+  .mast-inner{padding:40px 32px 28px;text-align:center}
+  .mast-inner .mark{height:86px;width:auto;display:inline-block;margin-bottom:20px}
+  .mast-title{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(34px,7vw,100px);line-height:.95;letter-spacing:-.01em;
+  }
+  .mast-title em{font-style:normal;color:var(--red)}
+  .mast-sub{
+    margin-top:14px;font-family:'Spectral',serif;font-size:12px;
+    letter-spacing:.35em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  nav.rubrics{
+    border-top:1px solid var(--ink);
+    display:flex;justify-content:center;flex-wrap:wrap;
+  }
+  nav.rubrics a{
+    font-family:'Anticva',serif;font-size:13px;font-weight:400;
+    letter-spacing:.12em;text-transform:uppercase;
+    padding:16px 34px;border-right:1px solid var(--line);
+    transition:background .2s,color .2s;
+  }
+  nav.rubrics a:first-child{border-left:1px solid var(--line)}
+  nav.rubrics a:hover{background:var(--ink);color:var(--paper)}
+  nav.rubrics a.hot{color:var(--red)}
+
+  /* ---------- метки рубрик ---------- */
+  .tag{
+    display:inline-block;font-family:'Anticva',serif;font-size:11px;
+    font-weight:400;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--red);border:1px solid var(--red);
+    padding:5px 12px;margin-bottom:16px;
+  }
+  .tag--dark{color:var(--paper);border-color:var(--paper)}
+
+  /* ---------- герой ---------- */
+  .hero{border-bottom:1px solid var(--ink)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;min-height:560px}
+  .hero-art{
+    background:url('55323605122_42d12fcdc5_c.jpg') center/cover no-repeat,#2A0D06;
+    position:relative;overflow:hidden;border-right:1px solid var(--ink);
+  }
+  .hero-art:after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(23,19,14,.55), transparent 45%);
+  }
+  .hero-art .cap{
+    z-index:1;
+    position:absolute;left:24px;bottom:20px;font-family:'Spectral',serif;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,241,232,.65);
+  }
+  .hero-body{padding:56px 48px;display:flex;flex-direction:column;justify-content:center}
+  .hero-title{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.01em;
+    cursor:pointer;transition:color .2s;
+  }
+  .hero-title:hover{color:var(--red)}
+  .hero-deck{margin-top:22px;font-size:20px;font-weight:300;color:var(--ink-soft);max-width:44ch}
+  .byline{
+    margin-top:28px;font-family:'Spectral',serif;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .byline b{color:var(--ink);font-weight:600}
+  .readmore{
+    margin-top:30px;align-self:flex-start;
+    font-family:'Anticva',serif;font-size:12px;font-weight:400;
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--paper);background:var(--ink);padding:14px 28px;
+    cursor:pointer;border:1px solid var(--ink);transition:.2s;
+  }
+  .readmore:hover{background:var(--red);border-color:var(--red)}
+
+  /* ---------- секции ---------- */
+  .sect-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:56px 0 26px;border-bottom:3px solid var(--ink);margin-bottom:0;
+  }
+  .sect-head h2{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(26px,3.4vw,44px);letter-spacing:-.01em;text-transform:uppercase;
+  }
+  .sect-head h2 span{color:var(--red)}
+  .sect-head a{
+    font-family:'Spectral',serif;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink-soft);
+    padding-bottom:2px;
+  }
+  .sect-head a:hover{color:var(--red);border-color:var(--red)}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line)}
+  .card{
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:0 0 34px;background:var(--paper);transition:background .25s;
+  }
+  .card.live{cursor:pointer}
+  .card.live:hover{background:var(--paper-dark)}
+  .card .ph{height:230px;margin-bottom:24px;position:relative;overflow:hidden}
+  .card .ph .g{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Anticva',serif;font-weight:400;font-size:150px;
+    color:rgba(245,241,232,.16);
+  }
+  .ph--green{background:linear-gradient(140deg,#043D28,#05A56A)}
+  .ph--burg{background:linear-gradient(140deg,#40011F,#8C034E)}
+  .ph--blue{background:linear-gradient(140deg,#02264F,#0561D9)}
+  .ph--red{background:linear-gradient(140deg,#5E1403,#F23B13)}
+  .ph--pink{background:linear-gradient(140deg,#7A2E42,#E67999)}
+  .ph--slate{background:linear-gradient(140deg,#20242B,#4E5A6E)}
+  .ph--img{background-size:cover !important;background-position:center !important}
+  .card-in{padding:0 26px}
+  .card h3{
+    font-family:'Spectral',serif;font-weight:600;font-size:24px;line-height:1.2;
+    transition:color .2s;
+  }
+  .card.live:hover h3{color:var(--red)}
+  .card p{margin-top:12px;font-size:16px;font-weight:300;color:var(--ink-soft)}
+  .card .byline{margin-top:16px;font-size:11px}
+  .soon{
+    display:inline-block;font-family:'Spectral',serif;font-size:10px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+    border:1px dashed var(--gold);padding:3px 8px;margin-bottom:12px;
+  }
+
+  /* ---------- цитата-разделитель ---------- */
+  .bigquote{
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    background:
+      linear-gradient(rgba(23,19,14,.82),rgba(23,19,14,.82)),
+      url('55324516231_7a87ecc3fe_c.jpg') center/cover no-repeat var(--ink);
+    color:var(--paper);
+    text-align:center;padding:100px 32px;position:relative;overflow:hidden;
+  }
+  .bigquote blockquote{
+    position:relative;font-family:'Spectral',serif;font-weight:500;font-style:italic;
+    font-size:clamp(26px,3.4vw,44px);line-height:1.25;max-width:22ch;margin:0 auto;
+  }
+  .bigquote cite{
+    position:relative;display:block;margin-top:28px;font-style:normal;
+    font-family:'Spectral',serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* ---------- двухколоночный блок ---------- */
+  .duo{display:grid;grid-template-columns:1.6fr 1fr;gap:0;border-bottom:1px solid var(--ink)}
+  .feed{border-right:1px solid var(--line);padding:48px 40px 48px 0}
+  .feed-item{
+    display:grid;grid-template-columns:110px 1fr;gap:26px;align-items:start;
+    padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .feed-item.live{cursor:pointer}
+  .feed-item:last-child{border-bottom:none}
+  .feed-item .mini{height:110px}
+  .feed-item h4{font-family:'Spectral',serif;font-weight:600;font-size:21px;line-height:1.25;transition:color .2s}
+  .feed-item.live:hover h4{color:var(--red)}
+  .feed-item .byline{margin-top:8px;font-size:11px}
+  .pop{padding:48px 0 48px 40px}
+  .pop h3{
+    font-family:'Anticva',serif;font-weight:400;font-size:20px;
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;
+  }
+  .pop ol{list-style:none;counter-reset:n}
+  .pop li{
+    counter-increment:n;display:flex;gap:20px;align-items:baseline;
+    padding:20px 0;border-bottom:1px solid var(--line);cursor:pointer;
+  }
+  .pop li:before{
+    content:counter(n);font-family:'Anticva',serif;font-weight:400;
+    font-size:34px;color:var(--red);min-width:44px;line-height:1;
+  }
+  .pop li span{font-family:'Spectral',serif;font-weight:500;font-size:17px;line-height:1.35;transition:color .2s}
+  .pop li:hover span{color:var(--red)}
+
+  /* ---------- подписка ---------- */
+  .subscribe{
+    border-bottom:1px solid var(--ink);
+    background:repeating-linear-gradient(-45deg,var(--paper),var(--paper) 14px,var(--paper-dark) 14px,var(--paper-dark) 16px);
+    text-align:center;padding:80px 32px;
+  }
+  .subscribe h2{
+    font-family:'Anticva',serif;font-weight:400;
+    font-size:clamp(26px,4vw,52px);text-transform:uppercase;letter-spacing:-.01em;
+  }
+  .subscribe p{margin:18px auto 30px;max-width:52ch;color:var(--ink-soft);font-weight:300}
+  .subscribe .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    font-family:'Anticva',serif;font-size:12px;font-weight:400;
+    letter-spacing:.12em;text-transform:uppercase;padding:16px 30px;cursor:pointer;
+    border:1px solid var(--ink);transition:.2s;background:var(--ink);color:var(--paper);
+  }
+  .btn:hover{background:var(--red);border-color:var(--red)}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---------- футер ---------- */
+  footer{background:var(--ink);color:var(--paper);padding:60px 32px 40px}
+  .foot-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+  .foot-brand{display:flex;gap:18px;align-items:flex-start}
+  .foot-brand .mark{height:64px;flex-shrink:0}
+  .foot-mast{font-family:'Anticva',serif;font-weight:400;font-size:32px;line-height:1}
+  .foot-mast em{font-style:normal;color:var(--red)}
+  .foot-grid p{margin-top:14px;font-size:15px;font-weight:300;color:rgba(245,241,232,.6);max-width:38ch}
+  .foot-grid h5{
+    font-family:'Spectral',serif;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:14px;
+  }
+  .foot-grid ul{list-style:none}
+  .foot-grid ul li{margin-bottom:8px}
+  .foot-grid ul a{color:rgba(245,241,232,.75);font-size:15px}
+  .foot-grid ul a:hover{color:var(--red)}
+  .foot-bottom{
+    max-width:var(--maxw);margin:44px auto 0;padding-top:22px;
+    border-top:1px solid rgba(245,241,232,.15);
+    font-family:'Spectral',serif;font-size:12px;color:rgba(245,241,232,.4);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- страницы статей ---------- */
+  #reader{display:none}
+  body.reading #home{display:none}
+  body.reading #reader{display:block}
+  .art{display:none}
+  .art.open{display:block}
+  .art-hero{color:var(--paper);padding:110px 32px 70px;border-bottom:1px solid var(--ink)}
+  .art-hero--red{background:radial-gradient(circle at 80% 15%, rgba(242,59,19,.65), transparent 55%),linear-gradient(165deg,#2A0D06,#5E1403 65%,#17130E)}
+  .art-hero--burg{background:
+    linear-gradient(165deg, rgba(38,0,15,.88), rgba(140,3,78,.62) 75%, rgba(26,0,9,.9)),
+    url('55323604792_6ede40f4f2_c.jpg') center 25%/cover no-repeat #26000F}
+  .art-hero--blue{background:radial-gradient(circle at 80% 15%, rgba(146,223,254,.35), transparent 55%),linear-gradient(165deg,#041224,#0561D9 80%,#02264F)}
+  .art-hero .wrap{max-width:900px}
+  .art-hero h1{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(34px,5vw,60px);line-height:1.08;margin-top:8px;
+  }
+  .art-hero .deck{margin-top:22px;font-size:21px;font-weight:300;color:rgba(245,241,232,.78);max-width:52ch}
+  .art-hero .byline{color:rgba(245,241,232,.6)}
+  .art-hero .byline b{color:var(--paper)}
+  .art-body{max-width:720px;margin:0 auto;padding:70px 32px 40px}
+  .art-body p{margin-bottom:26px;font-size:19px;font-weight:400;line-height:1.75}
+  .art-body p.lead:first-letter{
+    font-family:'Anticva',serif;font-weight:400;color:var(--red);
+    font-size:86px;float:left;line-height:.78;padding:8px 14px 0 0;
+  }
+  .art-body h2{
+    font-family:'Anticva',serif;font-weight:400;font-size:22px;
+    text-transform:uppercase;letter-spacing:.02em;margin:48px 0 22px;
+  }
+  .art-body sup{color:var(--red);font-family:'Spectral',serif;font-size:12px}
+  .pull{
+    margin:44px 0;padding:8px 0 8px 30px;border-left:4px solid var(--red);
+    font-family:'Spectral',serif;font-style:italic;font-weight:500;
+    font-size:27px;line-height:1.35;color:var(--ink);
+  }
+  .refs{margin-top:50px;border-top:1px solid var(--ink);padding-top:24px}
+  .refs summary{
+    font-family:'Anticva',serif;font-size:13px;font-weight:400;
+    text-transform:uppercase;letter-spacing:.1em;cursor:pointer;color:var(--ink-soft);
+  }
+  .refs summary:hover{color:var(--red)}
+  .refs ol{margin:18px 0 0 20px}
+  .refs li{font-size:14px;color:var(--ink-soft);margin-bottom:8px;line-height:1.5}
+  .art-author{
+    max-width:720px;margin:30px auto 0;padding:30px 32px 60px;
+    border-top:1px solid var(--ink);display:flex;gap:20px;align-items:center;
+  }
+  .art-author .ava{
+    width:64px;height:64px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anticva',serif;font-weight:400;color:var(--paper);font-size:24px;
+  }
+  .ava--red{background:linear-gradient(140deg,var(--red),var(--gold))}
+  .ava--burg{background:linear-gradient(140deg,var(--burgundy),#E67999)}
+  .ava--blue{background:linear-gradient(140deg,#02264F,var(--blue))}
+  .art-author b{font-family:'Spectral',serif;font-size:15px}
+  .art-author span{display:block;font-family:'Spectral',serif;font-size:13px;color:var(--ink-soft)}
+  .backbar{
+    position:sticky;top:0;z-index:10;background:var(--paper);
+    border-bottom:1px solid var(--ink);
+  }
+  .backbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 32px}
+  .backbar .logo{
+    font-family:'Anticva',serif;font-weight:400;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;gap:10px;
+  }
+  .backbar .logo .mark{height:26px}
+  .backbar .logo em{font-style:normal;color:var(--red)}
+  .backbtn{
+    font-family:'Spectral',serif;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;cursor:pointer;color:var(--ink-soft);
+  }
+  .backbtn:hover{color:var(--red)}
+  .related{border-top:3px solid var(--ink);background:var(--paper-dark);padding-bottom:60px}
+  .related .sect-head{border-bottom:1px solid var(--ink)}
+  .related .cards{grid-template-columns:1fr 1fr}
+
+  /* ---------- появление при скролле ---------- */
+  .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .rev.on{opacity:1;transform:none}
+
+  /* ---------- адаптив ---------- */
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art{min-height:300px;border-right:none;border-bottom:1px solid var(--ink)}
+    .cards{grid-template-columns:1fr 1fr}
+    .duo{grid-template-columns:1fr}
+    .feed{border-right:none;padding-right:0}
+    .pop{padding-left:0;border-top:1px solid var(--ink)}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    .cards{grid-template-columns:1fr}
+    .related .cards{grid-template-columns:1fr}
+    .hero-body{padding:40px 28px}
+    .topbar .date{display:none}
+    nav.rubrics a{padding:14px 18px;font-size:11px}
+    .mast-inner .mark{height:60px}
+  }
+ .journal-about h1{font-family:Anticva,serif;font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.1;margin-bottom:36px}.journal-about .back{display:inline-block;margin-bottom:36px;color:var(--red);border-bottom:1px solid}.journal-links{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0}.journal-links a{border:1px solid var(--ink);padding:10px 18px}.journal-links a:hover{background:var(--ink);color:var(--paper)}
+</style>
+</head>
+<body><header class="mast"><div class="mast-inner"><a href="zhurnal.html" class="mast-title">ЖУРНАЛ <em>В</em>СТРЕЧА</a><div class="mast-sub">Московская духовная академия · с 1996 года</div></div><nav class="rubrics"><a href="index.html">На сайт «Встречи»</a><a href="arhiv.html">В архиве</a><a href="o-zhurnale.html" class="hot" aria-current="page">О журнале</a></nav></header><main class="art-body journal-about"><h1>О ЖУРНАЛЕ</h1><p class="lead">«Встреча» — студенческий православный журнал, который издаёт Московская духовная академия с 1996 года. Именно с него начался весь наш проект: журнал возник по инициативе первокурсников МДА, они же составили редакционный совет первых номеров. Название предложил тогдашний студент-первокурсник, а ныне митрополит Тверской и Кашинский Амвросий.</p><p>За тридцать лет журнал прошёл большой путь. В 1998 году он был официально зарегистрирован Комитетом РФ по печати. С 2004 года «Встреча» стала полноцветным изданием и выходит по благословению Патриарха Московского и всея Руси Алексия II. Менялся облик — от чёрно-белых страниц с цветной обложкой до полноцветного журнала, — но неизменной осталась суть: это место, где встречаются богословская мысль, живая церковная жизнь и голос студенчества.</p><p>По воспоминаниям студента, стоявшего когда-то у истоков журнала:</p><blockquote class="pull"><p>В академии тогда у нас была готовность поднять невозможное, хотя дело с выпуском журнала выглядело безнадёжным. Но всё сложилось удачным образом. С финансированием помог Международный общественный фонд единства православных народов... Президент фонда В. А. Алексеев решил, что журнал духовной академии – это хороший проект, который стоит поддержать.</p></blockquote><p>Авторы журнала — преподаватели Академии, студенты духовных и светских учебных заведений, приглашённые гости. На страницах «Встречи» — святоотеческие труды и пастырские проповеди, интервью с церковными и общественными деятелями, социологические исследования, размышления о современном образовании и о том, что волнует молодёжь сегодня.</p><p>Рубрики журнала охватывают богословие, историю Церкви, церковное искусство, литургику, литературу, философию, агиографию, паломничество, православный мир — и многое другое. Особое внимание в журнале уделено жизни духовных школ, истории Московской духовной академии, её вкладу в развитие русской богословской мысли и в отечественную культуру.</p><p>«Встреча» — это возможность быть услышанным: делиться мыслями, задавать вопросы, которые важны именно молодому поколению, и получать на них серьёзный, вдумчивый ответ.</p><div class="journal-links"><a href="arhiv.html">Архив выпусков ↗</a><a href="zhurnal.html">Читать журнал ↗</a></div></main>  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div>
+          <div class="foot-mast">ЖУРНАЛ <em>В</em>СТРЕЧА</div>
+          <p>Студенческий медиажурнал Московской духовной академии. Делаем тексты о людях, вере, науке и жизни — так, чтобы их хотелось дочитать.</p>
+        </div>
+      </div>
+      <div>
+        <h5>Рубрики</h5>
+        <ul>
+          <li><a href="#">В мире</a></li>
+          <li><a href="#">В пользе</a></li>
+          <li><a href="#">В Церкви</a></li>
+          <li><a href="#">В науке</a></li>
+          <li><a href="arhiv.html">В архиве</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Журнал</h5>
+        <ul>
+          <li><a href="o-zhurnale.html">О журнале</a></li>
+          <li><a href="#">Редакция</a></li>
+          <li><a href="#">Предложить тему</a></li>
+          <li><a href="https://t.me/mda_vstrecha" target="_blank">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© «Встреча», 2026 · МДА, Сергиев Посад</span>
+      <span>Дизайн-макет</span>
+    </div>
+  </footer></body></html>
