@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Состоялся III фестиваль творчества православных студентов «Встреча» — ВСТРЕЧА</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anticva';src:url('font/Anticva-Regular.otf') format('opentype');font-display:swap}
+  :root{--cream:#F5F1E8;--paper:#F5F1E8;--ink:#17130E;--red:#F23B13;--green:#05A56A;--blue:#0561D9;--burgundy:#8C034E;--accent:var(--red)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:'Spectral',serif;font-weight:300;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:2px solid var(--ink);gap:20px;flex-wrap:wrap}
+  .nav-logo{display:flex;align-items:center;gap:14px}
+  .nav-logo .mark{height:34px;width:auto}
+  .nav-logo span{font-family:'Anticva',serif;font-size:26px;letter-spacing:.04em}
+  .nav-links{display:flex;gap:30px;flex-wrap:wrap}
+  .nav-links a{font-weight:400;font-size:14px;letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px}
+  .nav-links a:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);transition:width .25s}
+  .nav-links a:hover:after,.nav-links a.on:after{width:100%}
+
+  /* шапка события */
+  .head{padding:8vh 40px 5vh;border-bottom:2px solid var(--ink)}
+  .eyebrow{font-size:13px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  .head h1{font-family:'Anticva',serif;font-weight:400;font-size:clamp(46px,9vw,140px);line-height:.9;letter-spacing:-.01em}
+  .head h1 em{font-style:normal;color:var(--accent)}
+  .head .lead{margin-top:4vh;max-width:52ch;font-size:clamp(18px,1.7vw,22px);line-height:1.5}
+  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:5vh}
+  .fact{border:2px solid var(--ink);border-radius:14px;padding:20px}
+  .fact b{display:block;font-family:'Anticva',serif;font-weight:400;font-size:26px;line-height:1.1}
+  .fact span{display:block;margin-top:10px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+  /* о событии */
+  .about-ev{display:grid;grid-template-columns:1.2fr .8fr;gap:5vw;padding:7vh 40px;border-bottom:2px solid var(--ink)}
+  .about-ev h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.2vw,58px);line-height:1;margin-bottom:3vh}
+  .about-ev p{font-size:18px;line-height:1.6;max-width:56ch}
+  .about-ev p + p{margin-top:18px}
+  .quote{border-left:2px solid var(--accent);padding:6px 0 6px 24px;align-self:center}
+  .quote p{font-family:'Anticva',serif;font-size:clamp(22px,2.4vw,32px);line-height:1.2}
+  .quote span{display:block;margin-top:18px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+  /* программа */
+  .sec-head{padding:6vh 40px 3vh;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .sec-head h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(32px,4.6vw,64px)}
+  .sec-head span{font-size:14px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+  .row{display:grid;grid-template-columns:110px 1fr auto;gap:3vw;align-items:center;padding:4vh 40px;border-top:2px solid var(--ink);transition:background .3s,color .3s}
+  .row:last-of-type{border-bottom:2px solid var(--ink)}
+  .row:hover{background:var(--accent);color:var(--paper)}
+  .row .num{font-family:'Anticva',serif;font-size:30px;opacity:.5}
+  .row:hover .num,.row:hover .m{opacity:1}
+  .row .t{font-family:'Anticva',serif;font-weight:400;font-size:clamp(22px,3vw,44px);line-height:1}
+  .row .m{font-size:14px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:.65;max-width:30ch}
+
+  /* цифры */
+  .nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:2px solid var(--ink)}
+  .num-cell{padding:6vh 30px;border-right:2px solid var(--ink);text-align:center}
+  .num-cell:last-child{border-right:none}
+  .num-cell b{display:block;font-family:'Anticva',serif;font-weight:400;font-size:clamp(40px,5vw,76px);line-height:1;color:var(--accent)}
+  .num-cell span{display:block;margin-top:14px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+
+  /* фотополоса */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:2px solid var(--ink)}
+  .gallery div{height:300px;background-size:cover;background-position:center;border-right:2px solid var(--ink)}
+  .gallery div:last-child{border-right:none}
+
+  /* участие */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .step{padding:5vh 34px;border-right:2px solid var(--ink);display:flex;flex-direction:column;gap:14px}
+  .step:last-child{border-right:none}
+  .step b{font-family:'Anticva',serif;font-weight:400;font-size:34px;color:var(--accent);line-height:1}
+  .step h3{font-family:'Anticva',serif;font-weight:400;font-size:24px;line-height:1.1}
+  .step p{font-size:16px;line-height:1.55;opacity:.8}
+
+  /* CTA */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;padding:9vh 40px}
+  .cta .mark{height:64px;margin:0 auto 26px;display:block;--logo:var(--accent)}
+  .cta h2{font-family:'Anticva',serif;font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1}
+  .cta p{margin:20px auto 0;max-width:56ch;font-size:18px;line-height:1.6;opacity:.85}
+  .cta a{display:inline-block;margin-top:30px;background:var(--accent);color:var(--paper);padding:15px 28px;border-radius:99px;font-size:13px;font-weight:400;letter-spacing:.16em;text-transform:uppercase}
+
+  footer{background:var(--cream);padding:34px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  footer .fl{font-family:'Anticva',serif;font-size:20px;display:flex;align-items:center;gap:12px}
+  footer .fl .mark{height:26px;width:auto}
+  footer .fr{display:flex;gap:26px;font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
+  footer .fr a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  footer .fr a:hover{border-color:var(--accent)}
+  footer .copy{width:100%;font-size:12px;opacity:.55;font-weight:400;letter-spacing:.06em}
+
+  @media(max-width:900px){
+    .nav{padding:16px 20px;gap:12px}
+    .nav-links{gap:16px}
+    .nav-links a{font-size:11px}
+    .nav-logo span{display:none}
+    .head{padding:6vh 20px 5vh}
+    .facts{grid-template-columns:1fr}
+    .about-ev{grid-template-columns:1fr;gap:5vh;padding:6vh 20px}
+    .sec-head{padding-left:20px;padding-right:20px}
+    .row{grid-template-columns:60px 1fr;padding:3.4vh 20px}
+    .row .m{display:none}
+    .nums{grid-template-columns:repeat(2,1fr)}
+    .num-cell{border-bottom:2px solid var(--ink)}
+    .num-cell:nth-child(2){border-right:none}
+    .num-cell:nth-child(3),.num-cell:nth-child(4){border-bottom:none}
+    .gallery{grid-template-columns:1fr}
+    .gallery div{height:230px;border-right:none;border-bottom:2px solid var(--ink)}
+    .gallery div:last-child{border-bottom:none}
+    .steps{grid-template-columns:1fr}
+    .step{border-right:none;border-bottom:2px solid var(--ink)}
+    .step:last-child{border-bottom:none}
+    .cta,footer{padding-left:20px;padding-right:20px}
+  }
+
+  /* ---------- мобильные исправления ---------- */
+  html,body{overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .nav{flex-wrap:wrap}
+  .nav-links{flex-wrap:wrap;row-gap:8px}
+  h1,h2,h3,.t,.word,.fact b,.step h3,.n-card h3,.mn-body h2{overflow-wrap:anywhere}
+  .dir>*,.row>*,.fact,.num-cell,.step,.n-card,.mn-body,.about-ev>*,.quote,.sec-head>*{min-width:0}
+  .num-cell span,.fact span,.dir .m,.row .m{overflow-wrap:anywhere}
+  @media(max-width:700px){
+    .hero h1{font-size:clamp(40px,14.5vw,230px)}
+    .hero .sub{letter-spacing:.2em;font-size:13px}
+    .head h1{font-size:clamp(28px,9vw,140px);line-height:.95}
+    .head .lead{font-size:17px}
+    .dir .t,.row .t{font-size:clamp(19px,5.6vw,44px)}
+    .dir{grid-template-columns:44px 1fr 34px;gap:14px}
+    .row{grid-template-columns:44px 1fr;gap:14px}
+    .dir .num,.row .num{font-size:22px}
+    .dir .arr{font-size:30px}
+    .nums{grid-template-columns:repeat(2,1fr)}
+    .num-cell{padding:5vh 14px}
+    .num-cell:nth-child(2n){border-right:none}
+    .num-cell b{font-size:clamp(34px,11vw,76px)}
+    .num-cell span,.fact span{font-size:11px;letter-spacing:.1em}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:6px}
+    .sec-head h2{font-size:clamp(26px,7.5vw,64px)}
+    .mn-body{padding:5vh 20px}
+    .mn-body h2{font-size:clamp(24px,6.5vw,50px)}
+    .step{padding:4vh 20px}
+    .about-ev h2{font-size:clamp(26px,7.5vw,58px)}
+    .quote p{font-size:clamp(19px,5.5vw,32px)}
+    .cta h2,.about h2{font-size:clamp(25px,7vw,58px)}
+    .marquee-track{font-size:18px}
+    .marquee-track span{margin:0 20px}
+  }
+  @media(max-width:360px){
+    .nav-links{gap:12px}
+    .nav-links a{font-size:10px;letter-spacing:.1em}
+    .dir .t,.row .t{font-size:18px}
+    .head h1{font-size:26px}
+  }
+  /* на тач-экранах заливки по наведению не работают — показываем акцент сразу */
+  @media(hover:none){
+    .dir,.row{position:relative}
+    .dir:before,.row:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--red))}
+    .dir--green:before{background:var(--green)}
+    .dir--red:before{background:var(--red)}
+    .dir--blue:before{background:var(--blue)}
+    .dir--ink:before{background:var(--ink)}
+    .dir:hover,.row:hover{background:transparent;color:var(--ink)}
+    .dir:hover .arr{transform:none}
+    .n-card:hover{background:transparent}
+  }
+
+  /* ---------- бургер-меню (мобильные) ---------- */
+  .burger{display:none;position:relative;z-index:120;width:44px;height:44px;border:2px solid var(--ink);border-radius:12px;background:transparent;cursor:pointer;padding:0;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+  .burger span{display:block;width:20px;height:2px;background:var(--ink);transition:transform .3s,opacity .2s}
+  .burger.open{border-color:rgba(245,241,232,.5)}
+  .burger.open span{background:var(--paper)}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  body.menu-open{overflow:hidden}
+  @media(max-width:700px){
+    .nav{flex-wrap:nowrap;align-items:center}
+    .burger{display:flex}
+    .nav-links{position:fixed;inset:0;z-index:110;background:var(--ink);color:var(--paper);
+      flex-direction:column;justify-content:center;align-items:center;gap:0;row-gap:0;
+      opacity:0;visibility:hidden;transform:translateY(-14px);transition:opacity .28s,transform .28s,visibility .28s;
+      padding:80px 24px 40px}
+    .nav-links.open{opacity:1;visibility:visible;transform:none}
+    .nav-links a{font-family:'Anticva',serif;font-size:clamp(26px,8vw,40px);letter-spacing:.02em;
+      text-transform:uppercase;padding:14px 4px;line-height:1.1;text-align:center}
+    .nav-links a:after{left:50%;transform:translateX(-50%);height:2px;background:var(--red)}
+    .nav-links a.on{color:var(--red)}
+    .nav-links a.on:after{width:0}
+  }
+
+  /* ---------- мобильные: шапки нет, только плавающий бургер ---------- */
+  @media(max-width:700px){
+    .nav{position:fixed;top:0;right:0;left:auto;width:auto;
+      padding:12px;border-bottom:none;background:transparent;
+      z-index:120;gap:0;flex-wrap:nowrap;justify-content:flex-end}
+    .nav-logo{display:none}
+    .burger{background:var(--paper);box-shadow:0 3px 14px rgba(23,19,14,.18)}
+    .burger.open{background:transparent;box-shadow:none}
+    .pagetitle,.head,.hero{padding-top:9vh}
+  }
+  .about-ev{grid-template-columns:1fr}.about-ev>div{max-width:76ch}.about-ev p{max-width:70ch}
+</style>
+<link rel="stylesheet" href="assets/news.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="vmark">
+      <path style="fill:var(--logo,#F23B13)" d="M304.283 253.697C290.923 244.848 223.435 222.727 223.435 222.727L230.785 587H314.573V269.92C314.573 269.92 314.573 260.512 304.283 253.697Z"/>
+      <path style="fill:var(--logo,#F23B13)" d="M0.000258187 587H89.6684C89.6684 587 98.488 163.735 99.958 84.0962C102.898 61.974 119.561 49.4216 142.587 42.8018C155.28 39.1528 163.704 39.1528 176.396 42.8018C199.422 49.4216 216.086 64.9237 219.026 84.0962C220.495 131.289 223.435 222.727 223.435 222.727C223.435 222.727 254.471 207.879 270.474 193.231C291.881 173.636 310.163 159.31 310.163 119.491C310.163 80.31 296.934 64.9237 270.474 39.8522C232.255 10.3564 205.053 0.591673 158.757 0.0328829C110.834 -0.545531 76.9236 6.26377 42.6293 39.8522C14.5129 67.3902 1.46964 91.47 0.000258187 131.289C-0.000322734 277.294 0.000258187 587 0.000258187 587Z"/>
+    </g>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg><span>ВСТРЕЧА</span></a>
+  <div class="nav-links" id="nav-links"><a href="index.html">Главная</a><a href="festival.html">Фестиваль</a><a href="forum.html">Форум</a><a href="chteniya.html">Чтения</a><a href="o-proekte.html">О проекте</a></div>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+
+</nav>
+
+<main><header class="story-header"><a class="story-back" href="festival.html#news">← К новостям: фестиваль</a><h1>Состоялся III фестиваль творчества православных студентов «Встреча»</h1><p class="story-meta">Фестиваль · <time datetime="2026-06-07">7 июня 2026</time></p></header><img class="story-cover" src="https://mpda.ru/wp-content/uploads/2026/06/dsc_7906.jpg" alt="III фестиваль: «Свет Христов просвещает всех»" width="1600" height="900" fetchpriority="high"><article class="story-body"><p>7 июня 2026 года в День Всех Святых в Московской духовной академии состоялся фестиваль творчества православных студентов «Встреча». Уже в третий раз Академия становится площадкой для творческого общения студентов из разных духовных школ и вузов нашей страны.</p>
+<p>Центральной тематикой Фестиваля в этом году стал литургический возглас «Свет Христов просвещает всех». </p>
+<p>Тематика христианского просвещения раскрывалась участниками в творческих работах шести направлений: хоровое искусство, вокально-инструментальное творчество, изобразительное искусство, литературное творчество, короткие видеоролики и фотография.</p>
+<p>Организаторами Фестиваля стали Московская духовная академия, Свято-Троицкая Сергиева Лавра, Сергиево-Посадская епархия Русской Православной Церкви, Минская духовная семинария, Издательство Московской духовной академии, Объединение православных учёных и миссионерский отдел Песоченской епархии Калужской митрополии.</p>
+<p>Фестиваль проводится под эгидой Учебного комитета Русской Православной Церкви, при партнёрстве содружества духовных школ Московского региона, Совета по взаимодействию Русской Православной Церкви с организациями высшего и среднего профессионального образования в сфере духовно-нравственного воспитания, Отдела религиозного образования и катехизации Русской Православной Церкви, Синодального отдела по делам молодёжи Русской Православной Церкви, Молодежного отдела Московской городской епархии, Комиссии по работе с вузами и научным сообществом при Епархиальном совете г. Москвы.</p>
+<p>В этом году Фестиваль прошёл при поддержке фонда по сохранению традиционных духовно-нравственных и культурных ценностей славянской письменности и культуры «Фонд Славянской письменности и культуры» и Проектного совета православных предпринимателей.</p>
+<p>География Фестиваля продолжает расширятся, в этом году соорганизаторами и активными участниками Фестиваля стали студенты из Белоруссии. Ребята из Минска и Жировичей показали свои творческие работы в ряде номинаций. </p>
+<p>Всего в этом году в Фестивале приняли участие студенты из 40 вузов из 22 городов России и Белоруссии.</p>
+<p>Первый день двухдневной программы Фестиваля включал в себя неформальное общение и знакомство для конкурсантов. В тёплой дружеской обстановке участники пели любимые песни под гитару и гармошку и рассказывали о своей студенческой жизни.</p>
+<p>Второй день начался с Литургии в Покровском Академическом храме. </p>
+<p>В ожидании конкурсного отбора участники приступили к репетиционному процессу.</p>
+<p>В 13:00 одновременно стартовали все шесть творческих секций. </p>
+<p>Некоторые конкурсанты смогли принять участие сразу в нескольких творческих направлениях – талантливый человек талантлив во всём.</p>
+<p>Хоровой конкурс прошёл в древнем Елизаветинском зале Музея церковного искусства Московской духовной академии. Жюри в данной номинации составили главный регент Троице-Сергиевой Лавры иеромонах Нестор (Волков), регент первого академического хора, помощник декана факультета церковно-певческого искусства МДА Е.В. Боровинский, преподаватель факультета церковно-певческого искусства МДА Т.В. Пантелеева.</p>
+<p>Вокально-инструментальное творчество оценивали декан факультета церковно-певческого искусства игумен Лазарь (Гнатив); лауреат и член жюри многих международных фестивалей, ветеран боевых действий, поэт и композитор, гитарист группы «Чёрный кофе» С.В. Бартеневе; солист и барабанщик группы «Родной напев», организатор и режиссер официальных, концертных и театральных мероприятий МДА Ю.А. Дербуш.</p>
+<p>Жюри по литературному конкурсу составили Вице-президент Международного Союза Поэтов, член Союза Писателей, Руководитель Художественного Совета Творческого объединения «Поэты Москвы», победитель и член жюри ежегодных всероссийских и международных конкурсов А.В. Катков; обладатель медалей Российского союза писателей «Георгиевская лента — 80 лет Великой Победы», «Святая Русь» и знака отличия — звезды «Наследие» III степени поэт А.В. Черлин; доктор культурологии диакон Дионисий Макаров.</p>
+<p>В состав жюри в конкурсе «Изобразительное искусство» вошли декан иконописного факультета МДА архимандрит Лука (Головков); иконописец, художник монументалист, скульптор, заслуженный художник России, Член‑корреспондент Российской академии художеств, член Союза художников России Ф.А. Москвитин; преподаватель иконописного факультета МДА Л.А. Гадалова.</p>
+<p>Конкурс цифровой фотографии оценивали известный российский фотограф, мастер аэрофотосъёмки А.М. Джус; клирик Михаило-Архангельского храма г. Лобни Сергиево-Посадской епархии, потомственный фотограф, экспреподаватель направления «Фотохудожник» Академии имени С.Г. Строганова иерей Платон Чернов; преподаватель, заведующий учебной частью Колледжа дизайна и декоративного искусства РГХПУ им С.Г. Строганова О.А. Сухомлин.</p>
+<p>Жюри по направлению коротких видеороликов составили блогер-миллионник священник Владислав Береговой, амбассадор Всероссийского молодёжного конкурса видеоблогинга «Исследуйте Писания» Максим Павлык; помощник председателя Синодального отдела по культуре и церковному искусству Белорусской Православной Церкви, пресс-секретарь Минской духовной академии А.А. Ефименко.</p>
+<p>Победителями конкурсов по направлениям стали:</p>
+<p><strong>Хоровое искусство</strong></p>
+<ul>
+<li> I место — ансамбль «Лаврские созвучия», произведение «Здесь у Троицы окрылённые» (Гимн студентов МДА), регент Елизавета Алексеевна Кириллова (МДА);</li>
+
+
+
+<li>II место — хор «Музыкальный салон», произведение «Легенда о 12 разбойниках», регент Кирилл Сергеевич Трухачев(МДА); </li>
+
+
+
+<li>III место — хор Перервинской духовной семинарии, произведение «Даруй Боже благодать», регент Сергей Михайлович Акинфин.</li>
+</ul>
+<p><strong>Вокально-инструментальное творчество</strong></p>
+<ul>
+<li>I место — Ирина Юрьевна Пыхтина (РУДН), авторская песня о четырех</li>
+
+
+
+<li>евангелистах «О дальних берегах»;</li>
+
+
+
+<li>II место — Алёна Андреевна Костюковская (МПГУ), песня «Хочется жить»;</li>
+
+
+
+<li>II место — Оксана Юрьевна Иванова (г. Ставрополь), песня «Неувядаемый цвет»;</li>
+
+
+
+<li>III место — Ксения Владиславовна Скрибченко (РГАУ-МСХА им. К.А. Тимирязева), авторская песня «Любовь Бога безусловна».</li>
+</ul>
+<p><strong>Проза и Поэзия</strong></p>
+<ul>
+<li> I место — Елизавета Алексеевна Скородумова (Тверской государственный</li>
+
+
+
+<li>университет), «Была весна»;</li>
+
+
+
+<li>II место — Александр Антонович Масякин (Псково-Печерская духовная</li>
+
+
+
+<li>семинария), проза «Божья коровка»;</li>
+
+
+
+<li>III место — Василина Андреевна Ровняго (Тверской государственный</li>
+
+
+
+<li>университет), «И не найти мне, что сказать…»;</li>
+
+
+
+<li>III место — Анастасия Викторовна Забара (Тверской государственный</li>
+
+
+
+<li>университет), «Смерть побеждена»).</li>
+</ul>
+<p><strong>Изобразительное искусство</strong></p>
+<ul>
+<li>I место — Варвара Дмитриевна Обшивалкина (МДА), «Жизнь в лавре»;</li>
+
+
+
+<li>II место — Надежда Александровна Новикова (МДА), «В свете солнечных лучей»;</li>
+
+
+
+<li>III место — Вера Валерьевна Караваева (МДА), «Последний луч».</li>
+</ul>
+<p><strong>Фотография</strong></p>
+<ul>
+<li>I место — Алена Карабанова (ГИТР), фотопроект «Крестный ход»;</li>
+
+
+
+<li>II место — Александр Антонович Масякин (Псково-Печерская духовная семинария), фоторабота «Девочка»;</li>
+
+
+
+<li>III место — Мария Александровна Растворова («Свободные мастерские»), фоторабота «Очаг».</li>
+</ul>
+<p><strong>Короткие видеоролики</strong></p>
+<ul>
+<li>I место — Юлиана Николаевна Давыдова (Сергиево-Посадский гуманитарный колледж);</li>
+
+
+
+<li>II место — Федор Сергеевич Попов (МДА);</li>
+
+
+
+<li>III место — Даниил Дятлов (Минская духовная семинария).</li>
+</ul>
+<p>Финалом Фестиваля стал сводный гала-концерт, на котором были представлены творческие работы лауреатов по всем направлениям. </p>
+<p>Концерт открыл ректор Московской духовной академии, наместник Свято-Троицкой Сергиевой лавры епископ Сергиево-Посадский и Дмитровский Кирилл. Владыка обратился к участникам и гостям фестиваля с архипастырским напутственным словом, призвав молодежь продолжать нести свет христианской веры через свое созидательное творчество и преумножать дарованные Богом таланты.</p>
+<p>Яркое и живое общение в рамках Фестиваля стало прекрасным зарядом творческой энергии для всех участников на целый год. Если кто-то хотел, но не смог принять участие в настоящем году, Академия ждём Вас на других мероприятиях «Встречи» и особенно на следующем Фестивале творчества православных студентов, который анонсирован на май 2027 года.</p>
+<p><strong><em>Пресс-служба МДА </em></strong></p></article><div class="story-source">Автор: Пресс-служба МДА. <a href="https://mpda.ru/news/sostoyalsya-iii-festival-tvorchestva-pravoslavnyh-studentov-vstrecha/" target="_blank" rel="noopener">Оригинал публикации на сайте Московской духовной академии</a>.<br>Текст воспроизведён без сокращений. Условия использования: <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ru" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>; <a href="https://mpda.ru/terms-of-use/" target="_blank" rel="noopener">правила МДА</a>.</div><section class="event-gallery" id="gallery" aria-label="Фотогалерея события"><div class="gallery-heading"><h2>ФОТОГАЛЕРЕЯ</h2><a href="https://www.flickr.com/photos/mpda/albums/72177720334112731" target="_blank" rel="noopener">Весь альбом на Flickr ↗</a></div><p class="gallery-credit">Фото: Сергей Константинов, Вячеслав Юрченко, Павел Купцов · МДА / Flickr</p><div class="album-grid"><a href="https://live.staticflickr.com/65535/55324930985_4a23cbe020_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324930985/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324930985_4a23cbe020_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 1" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323610667_fb91d4348e_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323610667/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323610667_fb91d4348e_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 2" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324515071_2a5c7ec2b5_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324515071/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324515071_2a5c7ec2b5_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 3" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324930850_a8b4722a39_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324930850/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324930850_a8b4722a39_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 4" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324522431_45dddbd935_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324522431/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324522431_45dddbd935_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 5" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324739459_8ecf7a1b8b_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324739459/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324739459_8ecf7a1b8b_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 6" loading="lazy" decoding="async" width="640" height="427"></a></div><details class="more-photos"><summary>Ещё фотографии (69)</summary><div class="album-grid"><a href="https://live.staticflickr.com/65535/55324522261_3cff812cd8_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324522261/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324522261_3cff812cd8_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 7" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324739384_047bf1d7ff_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324739384/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324739384_047bf1d7ff_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 8" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324522141_261578e820_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324522141/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324522141_261578e820_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 9" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324522056_9237c8ef0a_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324522056/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324522056_9237c8ef0a_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 10" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324739139_4a5c9cf9f7_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324739139/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324739139_4a5c9cf9f7_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 11" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324930505_1ba4bb4755_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324930505/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324930505_1ba4bb4755_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 12" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324739074_8a8bda726d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324739074/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324739074_8a8bda726d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 13" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324521881_7640fb7495_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324521881/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324521881_7640fb7495_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 14" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324521896_fd165c7d15_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324521896/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324521896_fd165c7d15_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 15" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324738789_aebcee3c37_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324738789/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324738789_aebcee3c37_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 16" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324738929_cb5f89e957_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324738929/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324738929_cb5f89e957_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 17" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324679508_c68beb3017_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324679508/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324679508_c68beb3017_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 18" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324929860_15119e0430_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324929860/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324929860_15119e0430_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 19" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323609387_760e56d925_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323609387/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323609387_760e56d925_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 20" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323609452_e5547ba3d6_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323609452/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323609452_e5547ba3d6_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 21" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324929635_7ff430ea64_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324929635/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324929635_7ff430ea64_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 22" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324521111_a45e9018a4_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324521111/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324521111_a45e9018a4_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 23" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324929470_4b764163e3_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324929470/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324929470_4b764163e3_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 24" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324929590_54e03ca5d4_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324929590/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324929590_54e03ca5d4_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 25" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324737914_125373c32d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324737914/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324737914_125373c32d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 26" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324928760_a35b68a598_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324928760/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324928760_a35b68a598_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 27" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323607817_e7d90735e3_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323607817/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323607817_e7d90735e3_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 28" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324736844_64e3059d94_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324736844/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324736844_64e3059d94_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 29" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324928205_2da2cf471d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324928205/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324928205_2da2cf471d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 30" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324927805_da3a35dbc2_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324927805/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324927805_da3a35dbc2_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 31" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324676923_e3d7be57e7_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324676923/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324676923_e3d7be57e7_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 32" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323607162_2b9ac94e7d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323607162/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323607162_2b9ac94e7d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 33" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324927650_3c4209049d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324927650/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324927650_3c4209049d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 34" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324735849_da4265bffa_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324735849/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324735849_da4265bffa_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 35" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324736009_c60862160f_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324736009/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324736009_c60862160f_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 36" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324518406_495467fa78_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324518406/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324518406_495467fa78_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 37" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324927120_26032f8a09_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324927120/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324927120_26032f8a09_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 38" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324518066_e7a45c90ea_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324518066/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324518066_e7a45c90ea_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 39" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324518041_3b4ddfb472_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324518041/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324518041_3b4ddfb472_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 40" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324735159_4f91285b2e_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324735159/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324735159_4f91285b2e_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 41" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324926005_92b2c8dda6_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324926005/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324926005_92b2c8dda6_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 42" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324675273_6538afd20d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324675273/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324675273_6538afd20d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 43" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323605542_4f89cab1dc_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323605542/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323605542_4f89cab1dc_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 44" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324674933_c7b68c60ae_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324674933/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324674933_c7b68c60ae_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 45" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324516876_f2f80462b4_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324516876/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324516876_f2f80462b4_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 46" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324674928_ac4a8df15a_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324674928/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324674928_ac4a8df15a_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 47" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323605212_25d0959eb1_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323605212/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323605212_25d0959eb1_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 48" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733999_4f7a701a24_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733999/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733999_4f7a701a24_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 49" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323605122_42d12fcdc5_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323605122/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323605122_42d12fcdc5_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 50" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324516636_f8bc38eee1_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324516636/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324516636_f8bc38eee1_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 51" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324516411_53a278f26d_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324516411/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324516411_53a278f26d_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 52" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324674543_0e2f2ccde5_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324674543/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324674543_0e2f2ccde5_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 53" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323604792_6ede40f4f2_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323604792/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323604792_6ede40f4f2_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 54" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324674493_bda9f9854a_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324674493/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324674493_bda9f9854a_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 55" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733604_7442e49c7c_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733604/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733604_7442e49c7c_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 56" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324674423_c0ce284802_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324674423/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324674423_c0ce284802_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 57" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324515971_7d2359f864_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324515971/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324515971_7d2359f864_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 58" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733194_1335d96738_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733194/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733194_1335d96738_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 59" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733269_e02c32bf61_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733269/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733269_e02c32bf61_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 60" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324515751_433ea708a2_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324515751/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324515751_433ea708a2_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 61" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733069_8a66c91e98_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733069/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733069_8a66c91e98_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 62" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323604022_fe96f3aa90_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323604022/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323604022_fe96f3aa90_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 63" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324924495_2cc4c8fc44_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324924495/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324924495_2cc4c8fc44_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 64" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323604572_a1c24b52bd_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323604572/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323604572_a1c24b52bd_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 65" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324924440_9c84c98a67_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324924440/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324924440_9c84c98a67_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 66" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324924230_f4f2326684_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324924230/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324924230_f4f2326684_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 67" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324673278_12027c3a26_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324673278/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324673278_12027c3a26_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 68" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324516231_7a87ecc3fe_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324516231/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324516231_7a87ecc3fe_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 69" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324732479_895a746c0b_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324732479/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324732479_895a746c0b_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 70" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324924035_6f9a0ee72b_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324924035/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324924035_6f9a0ee72b_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 71" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324673163_7115c2b881_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324673163/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324673163_7115c2b881_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 72" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324733304_57cf4acda7_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324733304/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324733304_57cf4acda7_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 73" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55323603437_9646171e12_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55323603437/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55323603437_9646171e12_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 74" loading="lazy" decoding="async" width="640" height="427"></a><a href="https://live.staticflickr.com/65535/55324923820_93c2494cfc_b.jpg" data-photo data-gallery="album-festival-3" data-title="III фестиваль: «Свет Христов просвещает всех»" data-flickr="https://www.flickr.com/photos/mpda/55324923820/" target="_blank" rel="noopener"><img src="https://live.staticflickr.com/65535/55324923820_93c2494cfc_z.jpg" alt="III фестиваль: «Свет Христов просвещает всех» — фото 75" loading="lazy" decoding="async" width="640" height="427"></a></div></details></section></main>
+<footer>
+  <div class="fl"><svg class="mark" viewBox="0 0 315 587"><use href="#vmark"/></svg>ВСТРЕЧА</div>
+  <div class="fr">
+    <a href="https://t.me/mda_vstrecha" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://vk.com/mda_vstrecha" target="_blank" rel="noopener">ВКонтакте</a>
+  </div>
+  <div class="copy">© «Встреча», 2026 · Московская духовная академия, Сергиев Посад</div>
+</footer>
+
+<script>
+  (function(){
+    var b=document.querySelector('.burger'), m=document.getElementById('nav-links');
+    if(!b||!m)return;
+    function set(open){
+      b.classList.toggle('open',open);
+      m.classList.toggle('open',open);
+      document.body.classList.toggle('menu-open',open);
+      b.setAttribute('aria-expanded',open?'true':'false');
+    }
+    b.addEventListener('click',function(){set(!m.classList.contains('open'))});
+    m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+    window.addEventListener('resize',function(){if(window.innerWidth>700)set(false)});
+  })();
+</script>
+
+<script src="assets/news.js" defer></script>
+</body>
+</html>
