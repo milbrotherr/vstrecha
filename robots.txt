@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /v1/
-Sitemap: https://mdavstrecha.ru/sitemap.xml
+Sitemap: https://vstrecha.mpda.ru/sitemap.xml
