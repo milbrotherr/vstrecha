@@ -40,7 +40,7 @@ export class GitHub {
       throw new GitHubError(human, res.status);
     }
     if (binary) return new Uint8Array(await res.arrayBuffer());
-    if (raw) return res.text();
+    if (raw) return new TextDecoder('utf-8').decode(await res.arrayBuffer());
     if (res.status === 204) return null;
     return res.json();
   }
@@ -75,8 +75,12 @@ export class GitHub {
     const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
     return new TextDecoder().decode(bytes);
   }
+  // Двоичные файлы читаем по sha через Git Blobs: так байты не портятся
   async readBytes(repo, path) {
-    return this.api(`${this.repo(repo)}/contents/${encodeURI(path)}?ref=${BRANCH}`, { raw: true, binary: true });
+    let sha = this._shas?.[repo]?.[path];
+    if (!sha) { const t = await this.tree(repo); this._shas = { ...(this._shas || {}), [repo]: t.files }; sha = t.files[path]; }
+    if (!sha) throw new GitHubError('Не найдено: ' + path, 404);
+    return this.api(`${this.repo(repo)}/git/blobs/${sha}`, { raw: true, binary: true });
   }
 
   // changes: { путь: string | Uint8Array | null(удалить) }
