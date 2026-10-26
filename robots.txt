@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /v1/
+Disallow: /admin/
 Sitemap: https://vstrecha.mpda.ru/sitemap.xml

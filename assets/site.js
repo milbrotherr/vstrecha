@@ -42,7 +42,7 @@
   if (filterLinks.length) {
     function filter() {
       const requested = new URLSearchParams(location.search).get('tema') || 'all';
-      const theme = ['forum','festival','chteniya'].includes(requested) ? requested : 'all';
+      const theme = filterLinks.some(link => link.dataset.newsFilter === requested) ? requested : 'all';
       let count = 0;
       cards.forEach(card => { const visible = theme === 'all' || card.dataset.theme === theme; card.hidden = !visible; if (visible) count++; });
       filterLinks.forEach(link => link.setAttribute('aria-current', String(link.dataset.newsFilter === theme)));
@@ -70,4 +70,10 @@
   });
   const oldArticles = {a1:'statya-ne-ubiy.html',a2:'statya-vygoranie.html',a3:'statya-chudesa.html'};
   if (location.pathname.endsWith('/zhurnal.html') && oldArticles[location.hash.slice(1)]) location.replace(oldArticles[location.hash.slice(1)]);
+})();
+// Регистрация скрывается после указанной в админке даты (data-until="ГГГГ-ММ-ДД")
+(() => {
+  const today = new Date(); const pad = n => String(n).padStart(2, '0');
+  const iso = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+  document.querySelectorAll('[data-until]').forEach(el => { if (el.dataset.until && el.dataset.until < iso) el.style.display = "none"; });
 })();

@@ -95,3 +95,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 @media(max-width:1000px){.news-grid,.news-grid.cols-1,.news-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.news-media .news-announcement-art .roman{font-size:clamp(34px,5vw,64px)}}
 @media(max-width:700px){.project-news{padding:36px 20px}.project-news h2{font-size:clamp(28px,8vw,42px)}.news-grid,.news-grid.cols-1,.news-grid.cols-2{grid-template-columns:1fr;gap:24px}.news-card-body{padding:20px}.news-card h3{font-size:25px;min-height:0;-webkit-line-clamp:3}.news-card-body>p{min-height:0}.news-media .news-announcement-art{padding:24px}.news-media .news-announcement-art .roman{font-size:44px}.news-media .news-announcement-art span{font-size:12px}.news-card-meta time{display:inline;margin-left:5px}.story-header{padding:32px 20px}.story-cover{height:auto;aspect-ratio:16/10;max-height:280px}.story-body{font-size:18px;line-height:1.7;padding:32px 20px}.story-header h1{font-size:28px}.story-tools{gap:8px}.story-tools a,.story-tools button{font-size:13px;padding:10px 12px}.featured-forum .forum-poster{min-height:280px;padding:28px 20px}.featured-forum .poster-title{font-size:48px}.featured-forum .mn-body{padding:28px 20px}.featured-forum .featured-actions{flex-direction:column;align-items:stretch}.featured-forum .featured-actions a{text-align:center}.featured-forum .poster-date{font-size:30px}.news-heading{gap:12px!important}.album-grid a{aspect-ratio:3/2}.album-grid img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
 }
+/* Админка: дополнительные направления и блоки текста */
+.news-card--journal{--news-accent:var(--burgundy,#8C034E)}
+.news-card--dvizhenie,.news-card--iniciativy{--news-accent:var(--ink)}
+.story-body blockquote{margin:32px 0;padding:4px 0 4px 24px;border-left:3px solid var(--accent,var(--red));font-style:italic}
+.story-body blockquote p{margin-bottom:8px}
+.story-body blockquote cite{display:block;font-style:normal;font-size:15px;opacity:.7}
+.story-body .lead{font-size:1.12em;line-height:1.6}
+.body-figure{margin:32px 0}
+.body-figure img{display:block;width:100%;height:auto}
+.body-figure figcaption{margin-top:10px;font-size:14px;line-height:1.5;opacity:.7}
+.body-info{margin:28px 0;border-top:1px solid var(--ink)}
+.body-info div{display:grid;grid-template-columns:minmax(120px,30%) 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--ink)}
+.body-info dt{font-weight:500}
+@media(max-width:600px){.body-info div{grid-template-columns:1fr;gap:4px}}
