@@ -337,7 +337,7 @@ function renderEditor() {
     const g = d.gallery || {};
     main.push(`<section class="panel"><div class="panel-head"><div><div class="eyebrow">Дополнительно</div><h2>Фотогалерея Flickr</h2></div><span class="note">Необязательно</span></div><div class="stack">
       <label class="field"><span>Ссылка на альбом Flickr</span><div class="gal-line"><input class="input" id="album-url" value="${esc(g.album_url || '')}" placeholder="https://www.flickr.com/photos/mpda/albums/…"><button class="btn" type="button" data-act="flickr">${g.photos?.length ? 'Обновить' : 'Загрузить'}</button>${g.album_url ? '<button class="btn btn-danger" type="button" data-act="flickr-remove">Убрать</button>' : ''}</div>
-        <small>${S.settings.flickr_key ? 'Фото подтянутся из альбома: на сайте будет галерея — 6 снимков и кнопка «Ещё фотографии».' : 'Сначала добавьте ключ Flickr в разделе «Настройки».'}</small></label>
+        <small>Подтянутся последние 20 фото альбома: на сайте — 6 снимков, кнопка «Ещё фотографии» и ссылка на весь альбом.</small></label>
       ${g.album_url ? field('Подпись фотографов', 'gallery.credit', { ph: 'Фото: Имя Фамилия · МДА / Flickr' }) : ''}
       <div id="gal-preview">${g.photos?.length ? `<div class="label">${g.photos.length} фото</div><div class="gal-grid">${g.photos.map(p => `<img src="${esc(p.z)}" alt="" loading="lazy">`).join('')}</div>` : ''}</div>
     </div></section>`);
@@ -486,26 +486,40 @@ async function uploadImage(file) {
   return src;
 }
 
-// ---- Flickr ----
+// ---- Flickr (без ключа: открытая лента альбома, до 20 последних фото) ----
+function flickrJsonp(url) {
+  if (window.__FLICKR_JSONP__) return window.__FLICKR_JSONP__(url);
+  return new Promise((resolve, reject) => {
+    const cb = '__flickr' + Date.now();
+    const s = document.createElement('script');
+    const done = () => { delete window[cb]; s.remove(); clearTimeout(t); };
+    const t = setTimeout(() => { done(); reject(new Error('Flickr не ответил. Попробуйте ещё раз.')); }, 20000);
+    window[cb] = data => { done(); resolve(data); };
+    s.onerror = () => { done(); reject(new Error('Не удалось открыть альбом Flickr. Проверьте ссылку.')); };
+    s.src = url + '&jsoncallback=' + cb;
+    document.head.append(s);
+  });
+}
+function flickrNsid(user) {
+  if (/@N\d+$/.test(user)) return user;
+  return (S.settings.flickr_users || {})[user.toLowerCase()] || null;
+}
 async function loadFlickr(url) {
   const m = url.match(/flickr\.com\/photos\/([^/]+)\/(?:albums|sets)\/(\d+)/);
   if (!m) throw new Error('Не похоже на ссылку на альбом Flickr. Нужна ссылка вида flickr.com/photos/…/albums/…');
-  const key = S.settings.flickr_key; if (!key) throw new Error('Добавьте ключ Flickr в разделе «Настройки»');
-  const fetcher = window.__FLICKR_FETCH__ || (u => fetch(u).then(r => r.json()));
-  const photos = []; let page = 1, pages = 1;
-  do {
-    const u = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${encodeURIComponent(key)}&photoset_id=${m[2]}&extras=url_z,url_b,url_c&per_page=500&page=${page}&format=json&nojsoncallback=1`;
-    const r = await fetcher(u);
-    if (r.stat !== 'ok') throw new Error('Flickr: ' + (r.message || 'ошибка'));
-    pages = r.photoset.pages;
-    for (const p of r.photoset.photo) {
-      const z = p.url_z || p.url_c || p.url_b; if (!z) continue;
-      photos.push({ b: p.url_b || p.url_c || z, z, page: `https://www.flickr.com/photos/${m[1]}/${p.id}/`, w: +(p.width_z || p.width_c || 640), h: +(p.height_z || p.height_c || 427) });
-    }
-    page++;
-  } while (page <= pages);
-  if (!photos.length) throw new Error('В альбоме не нашлось фотографий');
-  return { album_url: `https://www.flickr.com/photos/${m[1]}/albums/${m[2]}`, photos };
+  const nsid = flickrNsid(m[1]);
+  if (!nsid) throw new Error(`Не знаю аккаунт Flickr «${m[1]}». Добавьте его числовой ID в «Настройках» или напишите Claude.`);
+  const feed = await flickrJsonp(`https://www.flickr.com/services/feeds/photoset.gne?set=${m[2]}&nsid=${encodeURIComponent(nsid)}&lang=ru-ru&format=json`);
+  const photos = (feed.items || []).map(it => {
+    const src = it.media?.m || '';
+    const id = (it.link.match(/\/(\d+)\//) || [])[1];
+    if (!src || !id) return null;
+    return { b: src.replace(/_m\.(jpg|png)$/, '_b.$1'), z: src.replace(/_m\.(jpg|png)$/, '_z.$1'), page: `https://www.flickr.com/photos/${m[1]}/${id}/`, w: 640, h: 427 };
+  }).filter(Boolean);
+  if (!photos.length) throw new Error('В альбоме не нашлось открытых фотографий');
+  const desc = plainOf(feed.description || '');
+  const credit = (desc.match(/Фото:[^\n/]*/) || [])[0]?.trim() || '';
+  return { album_url: `https://www.flickr.com/photos/${m[1]}/albums/${m[2]}`, photos, suggested_credit: credit };
 }
 
 // ---- обработчики редактора ----
@@ -573,7 +587,8 @@ function bindEditor() {
     if (act === 'flickr') {
       try {
         const res = await busy('Загружаю альбом Flickr…', () => loadFlickr($('#album-url').value.trim()));
-        S.draft.gallery = { credit: S.draft.gallery?.credit || '', ...res }; markDirty(); renderEditor(); toast(`Загружено фото: ${res.photos.length}`, 'ok');
+        const { suggested_credit, ...g } = res;
+        S.draft.gallery = { credit: S.draft.gallery?.credit || (suggested_credit ? suggested_credit + ' · МДА / Flickr' : ''), ...g }; markDirty(); renderEditor(); toast(`Загружено фото: ${res.photos.length}. Полный альбом — по ссылке «Весь альбом на Flickr».`, 'ok');
       } catch (err) { toast(err.message, 'err'); }
       return;
     }
@@ -860,9 +875,9 @@ function renderDictsWith(work) { const real = S.settings; S.settings = work; ren
 function renderSettings() {
   root.innerHTML = shell('settings', `<div class="page" style="max-width:820px">
     <div class="page-head"><div><div class="eyebrow">Настройки</div><h1>Настройки</h1></div></div>
-    <section class="panel"><div class="panel-head"><div><div class="eyebrow">Flickr</div><h2>Ключ Flickr</h2></div></div><div class="stack">
-      <label class="field"><span>Ключ API Flickr</span><input class="input" id="s-flickr" value="${esc(S.settings.flickr_key || '')}" placeholder="32 символа">
-      <small>Нужен, чтобы подтягивать фотографии из альбомов. Получить бесплатно: войдите на flickr.com → <a href="https://www.flickr.com/services/apps/create/noncommercial/" target="_blank" rel="noopener">создать ключ (некоммерческий)</a> → скопируйте поле «Key».</small></label>
+    <section class="panel"><div class="panel-head"><div><div class="eyebrow">Flickr</div><h2>Аккаунты Flickr</h2></div></div><div class="stack">
+      <label class="field"><span>Короткое имя = числовой ID</span><textarea class="input" id="s-flickr" rows="3" spellcheck="false">${esc(Object.entries(S.settings.flickr_users || {}).map(([k, v]) => k + ' = ' + v).join('\n'))}</textarea>
+      <small>Ключ Flickr не нужен: фото берутся из открытой ленты альбома. Нужно только знать числовой ID аккаунта. Аккаунт МДА (mpda) уже добавлен.</small></label>
       <div><button class="btn btn-primary" id="s-save">${ICONS.save}Сохранить</button></div>
     </div></section>
     <section class="panel"><div class="panel-head"><div><div class="eyebrow">Как это устроено</div><h2>Хранение и публикация</h2></div></div>
@@ -875,10 +890,12 @@ function renderSettings() {
       <button class="btn btn-danger" data-act="logout">Выйти из админки</button></section>
   </div>`);
   $('#s-save').addEventListener('click', async () => {
-    const before = S.settings.flickr_key;
-    S.settings.flickr_key = $('#s-flickr').value.trim();
-    try { await busy('Сохраняю…', () => saveCms({ [CMS_DIR + 'settings.json']: JSON.stringify(S.settings, null, 2) + '\n' }, 'Админка: ключ Flickr')); toast('Сохранено', 'ok'); }
-    catch (err) { S.settings.flickr_key = before; toast(err.message, 'err'); }
+    const before = S.settings.flickr_users;
+    const map = {};
+    for (const line of $('#s-flickr').value.split('\n')) { const [k, v] = line.split('=').map(x => (x || '').trim()); if (k && /@N\d+$/.test(v)) map[k.toLowerCase()] = v; }
+    S.settings.flickr_users = map; delete S.settings.flickr_key;
+    try { await busy('Сохраняю…', () => saveCms({ [CMS_DIR + 'settings.json']: JSON.stringify(S.settings, null, 2) + '\n' }, 'Админка: аккаунты Flickr')); toast('Сохранено', 'ok'); }
+    catch (err) { S.settings.flickr_users = before; toast(err.message, 'err'); }
   });
 }
 

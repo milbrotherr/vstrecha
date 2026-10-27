@@ -25,6 +25,7 @@ export const DEFAULT_SETTINGS = {
   home_event: null,
   journal_hero: null,
   journal_hero_text: '',
+  flickr_users: { mpda: '164238858@N03' },
 };
 
 // ---------- утилиты ----------
